@@ -18,15 +18,15 @@ if tipAmount < minTipAmount {
 let totalAmount = billAmount + tipAmount
 
 let billAmountFraction = Int(billAmount % 1 * 100)
-let billAmountFractionStr = billAmountFraction == 0 ? "00" : "\(billAmountFraction)"
+let billAmountFractionStr = billAmountFraction == 0 ? "00" : billAmountFraction < 10 ? "0\(billAmountFraction)" : "\(billAmountFraction)"
 let billAmountStr = "\(Int(billAmount)).\(billAmountFractionStr)"
 
 let tipAmountFraction = Int(tipAmount % 1 * 100)
-let tipAmountFractionStr = tipAmountFraction == 0 ? "00" : "\(tipAmountFraction)"
+let tipAmountFractionStr = tipAmountFraction == 0 ? "00" : tipAmountFraction < 10 ? "0\(tipAmountFraction)" : "\(tipAmountFraction)"
 let tipAmountStr = "\(Int(tipAmount)).\(tipAmountFractionStr)"
 
 let totalAmountFraction = Int(totalAmount % 1 * 100)
-let totalAmountFractionStr = totalAmountFraction == 0 ? "00" : "\(totalAmountFraction)"
+let totalAmountFractionStr = totalAmountFraction == 0 ? "00" : totalAmountFraction < 10 ? "0\(totalAmountFraction)" : "\(totalAmountFraction)"
 let totalAmountStr = "\(Int(totalAmount)).\(totalAmountFractionStr)"
 
 print("What is the bill? $\(billAmountStr)")
