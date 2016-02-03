@@ -6,6 +6,11 @@ Your a big tipper! When ever you go out to eat you tip 20% of the bill and never
 * `What is the tip percentage? x`
 * `The tip is $x.xx`
 * `The total is $x.xx`
+>> **Constraints:**
+* Don't use the `String(format:, _, _)` initilizer
+* Use `if` when using the $3 minimum
+* Use the remainder operator while creating the string
+* Use the ternary conditional operator
 */
 import Foundation
 
@@ -19,7 +24,7 @@ if tipAmount < minTipAmount {
 }
 let totalAmount = billAmount + tipAmount
 
-// using the Modulus Operator to get the decimal value as an Int
+// using the Remainder Operator to get the decimal value as an Int
 
 let billAmountDecimal =    Int(billAmount % 1 * 100)
 let tipAmountDecimal =     Int(tipAmount % 1 * 100)
