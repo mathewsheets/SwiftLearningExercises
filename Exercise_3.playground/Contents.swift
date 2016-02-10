@@ -4,8 +4,8 @@
 * Decrypted: Nearly all men can stand adversity, but if you want to test a man's character, give him power
 * Encrypted: arneyl nyy zra pna fgnaq nqirefvgl, ohg vs lbh jnag gb grfg n zna'f punenpgre, tvir uvz cbjre
 >> **Constraints:**
-* Use a `switch` statment
-* Use a loop statement
+* The encrypted and decrypted text is case sensitive
+* Add a shift variable to indicate how many places to shift
 */
 import Foundation
 

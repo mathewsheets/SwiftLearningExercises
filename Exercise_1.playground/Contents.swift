@@ -8,7 +8,6 @@ Your a big tipper! When ever you go out to eat you tip 20% of the bill and never
 * `The total is $x.xx`
 >> **Constraints:**
 * Don't use the `String(format:, _, _)` initilizer
-* Use `if` when using the $3 minimum
 * Use the remainder operator while creating the string
 * Use the ternary conditional operator
 */
@@ -18,10 +17,9 @@ let billAmount = 87.56
 let tipPercentage = 0.2
 let minTipAmount = 3.0
 
-var tipAmount = billAmount * tipPercentage
-if tipAmount < minTipAmount {
-    tipAmount = minTipAmount
-}
+let initialTipAmount = billAmount * tipPercentage
+var tipAmount = (initialTipAmount < minTipAmount) ? minTipAmount : initialTipAmount
+
 let totalAmount = billAmount + tipAmount
 
 // using the Remainder Operator to get the decimal value as an Int
