@@ -14,63 +14,48 @@ let alphaUpper = alphaLower.uppercaseString
 let alphaLowerCount = alphaLower.characters.count
 let alphaUpperCount = alphaUpper.characters.count
 
-var shiftValue = 13
-var initial = "Nearly all men can stand adversity, but if you want to test a man's character, give him power."
-
+let input = "Nearly all men can stand adversity, but if you want to test a man's character, give him power."
+var shiftValue = 5
 var encrypted = ""
-for char in initial.characters {
-    var charString = String(char)
-    
-    let alpha: String
-    let alphaCount: Int
-    
-//    switch char {
-//    case alphaLower.characters.startIndex..<alphaLower.characters.endIndex:
-//        alpha = alphaLower
-//    case alphaUpper.characters:
-//        alpha = alphaUpper
-//    default:
-//        encrypted += charString
-//        continue
-//    }
-
-    if alphaLower.containsString(charString) {
-        alpha = alphaLower
-    } else if alphaUpper.containsString(charString) {
-        alpha = alphaUpper
-    } else {
-        encrypted += charString
-        continue
-    }
-    alphaCount = alpha.characters.count
-
-    let found = alpha.rangeOfString(charString)!
-    let distanceToEnd = found.startIndex.distanceTo(alpha.endIndex)
-    var advancedBy = ((alphaCount - distanceToEnd) + shiftValue) % alphaCount
-    encrypted += alpha.substringWithRange(alpha.startIndex.advancedBy(advancedBy)..<alpha.startIndex.advancedBy(advancedBy + 1))
-}
-
 var decrypted = ""
-for char in encrypted.characters {
-    var charString = String(char)
-    
-    let alpha: String
-    let alphaCount: Int
-    if alphaLower.containsString(charString) {
-        alpha = alphaLower
-    } else if alphaUpper.containsString(charString) {
-        alpha = alphaUpper
-    } else {
-        decrypted += charString
-        continue
+var encrypting = true
+repeat {
+    let text = encrypting ? input : encrypted
+    for character in text.characters {
+        let string = String(character)
+        
+        let alpha: String
+        let alphaCount: Int
+        if alphaLower.containsString(string) {
+            alpha = alphaLower
+        } else if alphaUpper.containsString(string) {
+            alpha = alphaUpper
+        } else {
+            encrypting ? encrypted.appendContentsOf(string) : decrypted.appendContentsOf(string)
+            continue
+        }
+        alphaCount = alpha.characters.count
+        
+        let found = alpha.rangeOfString(string)!
+        let distance: Int
+        var advancedBy: Int
+        if encrypting {
+            distance = alphaCount - found.startIndex.distanceTo(alpha.endIndex)
+            advancedBy = (distance + shiftValue) % alphaCount
+        } else {
+            distance = alpha.startIndex.distanceTo(found.startIndex)
+            advancedBy = (distance - shiftValue) % alphaCount
+            if advancedBy < 0 {
+                advancedBy = alphaCount - -advancedBy
+            }
+        }
+        
+        let append = alpha.substringWithRange(alpha.startIndex.advancedBy(advancedBy)..<alpha.startIndex.advancedBy(advancedBy + 1))
+        encrypting ? encrypted.appendContentsOf(append) : decrypted.appendContentsOf(append)
     }
-    alphaCount = alpha.characters.count
 
-    let found = alpha.rangeOfString(charString)!
-    let distanceToEnd = found.startIndex.distanceTo(alpha.endIndex)
-    var advancedBy = ((alphaCount - distanceToEnd) + shiftValue) % alphaCount
-    decrypted += alpha.substringWithRange(alpha.startIndex.advancedBy(advancedBy)..<alpha.startIndex.advancedBy(advancedBy + 1))
-}
+    encrypting = !encrypting
+} while decrypted.isEmpty
 
 print("Decrypted: \(decrypted)")
 print("Encrypted: \(encrypted)")
