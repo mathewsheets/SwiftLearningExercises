@@ -15,7 +15,7 @@ let alphaLowerCount = alphaLower.characters.count
 let alphaUpperCount = alphaUpper.characters.count
 
 let input = "Nearly all men can stand adversity, but if you want to test a man's character, give him power."
-var shiftValue = 5
+let shiftValue = 8
 var encrypted = ""
 var decrypted = ""
 var encrypting = true
@@ -23,19 +23,20 @@ repeat {
     let text = encrypting ? input : encrypted
     for character in text.characters {
         let string = String(character)
-        
-        let alpha: String
-        let alphaCount: Int
-        if alphaLower.containsString(string) {
+
+        var alpha: String
+        var alphaCount: Int
+        switch string {
+        case _ where alphaLower.containsString(string):
             alpha = alphaLower
-        } else if alphaUpper.containsString(string) {
+        case _ where alphaUpper.containsString(string):
             alpha = alphaUpper
-        } else {
+        default:
             encrypting ? encrypted.appendContentsOf(string) : decrypted.appendContentsOf(string)
             continue
         }
         alphaCount = alpha.characters.count
-        
+
         let found = alpha.rangeOfString(string)!
         let distance: Int
         var advancedBy: Int
@@ -49,7 +50,7 @@ repeat {
                 advancedBy = alphaCount - -advancedBy
             }
         }
-        
+
         let append = alpha.substringWithRange(alpha.startIndex.advancedBy(advancedBy)..<alpha.startIndex.advancedBy(advancedBy + 1))
         encrypting ? encrypted.appendContentsOf(append) : decrypted.appendContentsOf(append)
     }
