@@ -29,7 +29,7 @@ typealias Class         = Set<StudentName>
 typealias ClassName     = String
 typealias Classes       = [ClassName:Class]
 
-var matt        = Student(); matt       ["name"] = "Matt";
+var matt        = Student(); matt       ["name"] = "Matt";      matt    ["last"] = ""
 var annie       = Student(); annie      ["name"] = "Annie";
 var sam         = Student(); sam        ["name"] = "Sam";
 var jack        = Student(); jack       ["name"] = "Jack";
@@ -66,6 +66,11 @@ students.append(becky)
 students.append(amber)
 students.append(todd)
 
+var allStudents = Set<String>()
+for student in students {
+    allStudents.insert(student["name"]!)
+}
+
 var math = Class()
 math.insert(students[8]["name"]!)
 math.insert(students[4]["name"]!)
@@ -84,14 +89,14 @@ science.insert(students[14]["name"]!)
 science.insert(students[6]["name"]!)
 science.insert(students[1]["name"]!)
 
-var engligh = Class()
-engligh.insert(students[3]["name"]!)
-engligh.insert(students[5]["name"]!)
-engligh.insert(students[13]["name"]!)
-engligh.insert(students[16]["name"]!)
-engligh.insert(students[6]["name"]!)
-engligh.insert(students[2]["name"]!)
-engligh.insert(students[9]["name"]!)
+var english = Class()
+english.insert(students[3]["name"]!)
+english.insert(students[5]["name"]!)
+english.insert(students[13]["name"]!)
+english.insert(students[16]["name"]!)
+english.insert(students[6]["name"]!)
+english.insert(students[2]["name"]!)
+english.insert(students[9]["name"]!)
 
 var history = Class()
 history.insert(students[7]["name"]!)
@@ -105,7 +110,7 @@ history.insert(students[5]["name"]!)
 var classes = Classes()
 classes["Math"] = math
 classes["Science"] = science
-classes["Engligh"] = engligh
+classes["Engligh"] = english
 classes["History"] = history
 
 print("All \(students.count) students")
@@ -125,5 +130,69 @@ for name in classNames {
     }
 }
 
+let mathAndScienceIntersect = math.intersect(science)
+print("\(mathAndScienceIntersect.count) Intersecting Math & Science Students")
+for student in mathAndScienceIntersect {
+    print("\t\(student)")
+}
+let mathAndScienseExclusiveOr = math.exclusiveOr(science)
+print("\(mathAndScienseExclusiveOr.count) ExclusiveOr of Math & Science Students")
+for student in mathAndScienseExclusiveOr {
+    print("\t\(student)")
+}
+let mathAndScienceUnion = math.union(science)
+print("\(mathAndScienceUnion.count) Union of Math & Science Students")
+for student in mathAndScienceUnion {
+    print("\t\(student)")
+}
+let mathAndScienceSubtract = math.subtract(science)
+print("\(mathAndScienceSubtract.count) Subtracting Math & Science Students")
+for student in mathAndScienceSubtract {
+    print("\t\(student)")
+}
 
+if allStudents == math.union(science).union(english).union(history) {
+    print("Unioning all classes equals all the students")
+}
+if english.isSubsetOf(allStudents) {
+    print("Math is a subset of all students")
+}
+if !english.isSubsetOf(history) {
+    print("English is not a subset of History")
+}
+if allStudents.isSupersetOf(history) {
+    print("All students is a superset of History")
+}
 
+var mathBoys = Class()
+mathBoys.insert(students[13]["name"]!)
+mathBoys.insert(students[0]["name"]!)
+mathBoys.insert(students[7]["name"]!)
+mathBoys.insert(students[6]["name"]!)
+mathBoys.insert(students[4]["name"]!)
+
+var mathGirls = Class()
+mathGirls.insert(students[11]["name"]!)
+mathGirls.insert(students[8]["name"]!)
+
+if mathGirls.isStrictSubsetOf(math) {
+    print("Math girls is a strict subset of math")
+}
+if !mathGirls.union(mathBoys).isStrictSubsetOf(math) {
+    print("Math girls & boys is not a strict subset of math")
+}
+
+if !allStudents.isStrictSupersetOf(math.union(science).union(english).union(history)) {
+    print("All classes is not a strict superset of all students")
+}
+let stemStudents = math.union(science)
+if allStudents.isStrictSupersetOf(stemStudents) {
+    print("All students is a strict superset of STEM students")
+}
+
+if mathBoys.isDisjointWith(mathGirls) {
+    print("Math boys is disjointed w/ math girls")
+}
+if !mathGirls.isDisjointWith(math) {
+    print("Math girls is not disjointed w/ math")
+}
