@@ -1,5 +1,5 @@
 /*:
-**Exercise:** You have to record all the students and their grades for your school. Leveraging arrays, dictionaries, and sets create table like containers for each class. Your classes are Math, Science, English and History with a total of 17 unique students. Print out each class roster and use and experiment with set operations and set membership and equality.
+**Exercise:** You have to record all the students for your school. Leveraging arrays, dictionaries, and sets, create table like containers for each class. Your classes are Math, Science, English and History with a total of 17 unique students with 7 students in each class. Print out each class roster and experiment with set operations, membership and equality.
 >> **Example Output:**
 * `Math = Mathew Sheets, John Winters, Sam Smith`
 * `Science = Sam Smith, Carson Daily, Adam Aarons`
@@ -42,13 +42,12 @@ var rows = [
 // Data Types
 typealias StudentKey    = String
 typealias StudentValue  = String
+typealias StudentName   = String
+typealias ClassName     = String
+
 typealias Student       = [StudentKey:StudentValue]
 typealias Students      = [Student]
-
-typealias StudentName   = String
 typealias Class         = Set<StudentName>
-
-typealias ClassName     = String
 typealias Classes       = [ClassName:Class]
 
 // Processing
