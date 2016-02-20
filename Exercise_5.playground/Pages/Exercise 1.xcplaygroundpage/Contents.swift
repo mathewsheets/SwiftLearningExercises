@@ -16,6 +16,7 @@ Your a big tipper! When ever you go out to eat you tip 20% of the bill and never
 */
 import Foundation
 
-print(hello("matt"))/*:
+print(hello("matt"))
+/*:
 [Exercises](Exercises) | [Previous](@previous) | [Next](@next)
 */
