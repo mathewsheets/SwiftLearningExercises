@@ -144,7 +144,7 @@ if allStudents == math.union(science).union(english).union(history) {
     print("Unioning all classes equals all the students")
 }
 if english.isSubsetOf(allStudents) {
-    print("Math is a subset of all students")
+    print("English is a subset of all students")
 }
 if !english.isSubsetOf(history) {
     print("English is not a subset of History")
