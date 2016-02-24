@@ -11,6 +11,15 @@
 * Add a shift variable to indicate how many places to shift
 */
 import Foundation
+
+let input = "Nearly all men can stand adversity, but if you want to test a man's character, give him power."
+let shiftValue = 5
+
+var encrypted = encrypt(input, shiftValue: shiftValue)
+var decrypted = decrypt(encrypted, shiftValue: shiftValue)
+
+print("Decrypted: \(decrypted)")
+print("Encrypted: \(encrypted)")
 /*:
 [Exercises](Exercises) | [Previous](@previous) | [Next](@next)
 */
