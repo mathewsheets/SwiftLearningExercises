@@ -23,17 +23,28 @@ let students = [
 /*:
 **Functions:**
 * each = Iterate over each element in the array
-* all = Returns true if all of the element is not false
+* all = Returns true if all of the elements is not false
 * any = Returns true if at least one of the elements is not false
+* contains = Returns true if the element is present
 * indexOf = Returns the index at which element can be found
-* contains = Returns true if the element is present in the list
-* filter = Returns an array of all the elements that pass a truth test (predicate).
-* reject = Returns the elements in the array without the elements that pass a truth test (predicate).
+* filter = Returns an array of all the elements that pass a truth test
+* reject = Returns the elements in the array without the elements that pass a truth test
 * pluck = Returns an array of a specific value from all the elements
+>> **Constraints:**
+Use the above functions to query your students.
+>>
+>> **Example Output:**
+* Last names of math and sciense students where age > 25 and age < 80
+* ["Kenobi", "Windu", "Solo", "Bacca"]
 */
 each(students) { print("\($0["first"]!) \($0["last"]!) is index \($1)") }
-
-
-print(pluck(students) { $0["age"]! })
-print(pluck(students) { $0["last"]! })
+print("all = \(all(students) { Int($0["age"]!) < 88 })")
+print("any = \(any(students) { Int($0["age"]!) <= 16 })")
+print("indexOf = \(students[indexOf(students) { $0["last"] == "Sidious" }!]["first"]!)")
+print("contains = \(contains(students) { $0["first"] == "Chew" })")
+print("filter: \n\t\(filter(students) { $0["class"]! == "Engligh" }!)")
+print("reject: \n\t\(reject(students) { Int($0["age"]!) >= 21 }!)")
+print("pluck: \n\t\(pluck(students) { $0["age"]! }.sort())")
+print("pluck: \n\t\(pluck(students) { $0["last"]! })")
+print("Last names of math and sciense students where age > 25 and age < 80\n\t\(pluck(filter(filter(students) { $0["class"] == "Math" }! + filter(students) { $0["class"] == "Science" }!) { Int($0["age"]!)! > 25 && Int($0["age"]!)! < 80 }!) { $0["last"]! })")
 
