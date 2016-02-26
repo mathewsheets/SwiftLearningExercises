@@ -13,13 +13,17 @@
 import Foundation
 
 let input = "Nearly all men can stand adversity, but if you want to test a man's character, give him power."
-let shiftValue = 5
+let shiftValue = Int.max
 
-var encrypted = encrypt(input, shiftValue: shiftValue)
-var decrypted = decrypt(encrypted, shiftValue: shiftValue)
+let encrypted = encrypt(input, shiftValue: shiftValue)
+let decrypted = decrypt(encrypted, shiftValue: shiftValue)
 
 print("Decrypted: \(decrypted)")
 print("Encrypted: \(encrypted)")
+
+let equal = input == decrypted ? "Yes" : "No"
+
+print("Does input == decrypted: \(equal)")
 /*:
 [Exercises](Exercises) | [Previous](@previous) | [Next](@next)
 */
