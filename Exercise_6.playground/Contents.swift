@@ -3,7 +3,7 @@
 */
 let students = [
     ["first" : "Obi-Wan",   "last" : "Kenobi",      "age" : "55", "class" : "Math"],
-    ["first" : "Darth",     "last" : "Vader",		"age" : "76", "class" : "Engligh"],
+    ["first" : "Darth",     "last" : "Vader",		"age" : "76", "class" : "English"],
     ["first" : "Anakin",    "last" : "Skywalker",	"age" : "17", "class" : "History"],
     ["first" : "Darth",     "last" : "Sidious",		"age" : "88", "class" : "Science"],
     ["first" : "Padme",     "last" : "Amidala",		"age" : "25", "class" : "Math"],
@@ -11,14 +11,14 @@ let students = [
     ["first" : "Count",     "last" : "Dooku",		"age" : "67", "class" : "History"],
     ["first" : "Luke",      "last" : "Skywalker",	"age" : "21", "class" : "Math"],
     ["first" : "Han",       "last" : "Solo",		"age" : "35", "class" : "Science"],
-    ["first" : "Leia",      "last" : "Organa",		"age" : "21", "class" : "Engligh"],
+    ["first" : "Leia",      "last" : "Organa",		"age" : "21", "class" : "English"],
     ["first" : "Chew",      "last" : "Bacca",		"age" : "33", "class" : "Science"],
     ["first" : "Boba",      "last" : "Fett",		"age" : "32", "class" : "History"],
-    ["first" : "Lando",     "last" : "Calrissian",	"age" : "55", "class" : "Engligh"],
+    ["first" : "Lando",     "last" : "Calrissian",	"age" : "55", "class" : "English"],
     ["first" : "Kylo",      "last" : "Ren",			"age" : "21", "class" : "Math"],
     ["first" : "Poe",       "last" : "Dameron",		"age" : "25", "class" : "History"],
     ["first" : "Finn",      "last" : "FN-2187",		"age" : "23", "class" : "Science"],
-    ["first" : "Rey",       "last" : "Rey",			"age" : "16", "class" : "Engligh"]
+    ["first" : "Rey",       "last" : "Rey",			"age" : "16", "class" : "English"]
 ]
 /*:
 **Functions:**
