@@ -34,17 +34,40 @@ let phones = [iPhone, iPhone3G, iPhone3Gs, iPhone4, iPhone4s, iPhone5, iPhone5c,
 */
 import Foundation
 
-var typeSafePhone = [Phone]()
-
 do {
-
-    typeSafePhone.append(try createPhone(.iPhone6s, modelNumber: .A1633, hardwareString: .iPhone8_1, osVersion: ._9))
-
+    
+    try initData()
+    
 } catch PhoneCreationError.ModelNumberInvalid(let modelNumber, let modelName) {
     print("invalid model number of \(modelNumber) for \(modelName)")
 } catch PhoneCreationError.HardwareStringInvalid(let hardwareString, let modelName) {
     print("invalid hardware string of \(hardwareString) for \(modelName)")
 } catch PhoneCreationError.OSVersionInvalid(let osVersion, let modelName) {
     print("invalid os version of \(osVersion) for \(modelName)")
+}
+
+// Get Device with ModelName
+let _5cs = filter(safePhones) { $0.0 == .iPhone5c } ?? []
+if !_5cs.isEmpty {
+    print("5c by model name = \(_5cs.first!.0.rawValue)")
+}
+
+//Get Device with ModelNumber
+let _6ss = filter(safePhones) { $0.1 == .A1633 } ?? []
+if !_6ss.isEmpty {
+    print("6s by model number \(_6ss.first!.0.rawValue)")
+}
+
+//Get Device with HardwareString
+let _5ss = filter(safePhones) { $0.2 == .iPhone6_1 } ?? []
+if !_5ss.isEmpty {
+    print("5s by hardware string = \(_5ss.first!.0.rawValue)")
+}
+
+//Get Devices with OSVersion
+let _v9s = filter(safePhones) { $0.3 == ._9 } ?? []
+print("version 9 phones")
+for phone in _v9s {
+    print("\t\(phone.0.rawValue)")
 }
 
