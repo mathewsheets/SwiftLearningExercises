@@ -5,7 +5,7 @@ let iPhone          = (modelName: "iPhone", modelNumbers: ["A1203"], hardwareStr
 let iPhone3G        = (modelName: "iPhone 3G", modelNumbers: ["A1324", "A1241"], hardwareStrings: ["iPhone1,2"], osVersions: [2, 3, 4])
 let iPhone3Gs       = (modelName: "iPhone 3Gs", modelNumbers: ["A1325", "A1303"], hardwareStrings: ["iPhone2,1"], osVersions: [3, 4, 5, 6])
 let iPhone4         = (modelName: "iPhone 4", modelNumbers: ["A1349", "A1332"], hardwareStrings: ["iPhone3,1", "iPhone3,2", "iPhone3,3"], osVersions: [4, 5, 6, 7])
-let iPhone4s        = (modelName: "iPhone 4S", modelNumbers: ["A1431", "A1387"], hardwareStrings: ["iPhone4,1"], osVersions: [5, 6, 7, 8, 9])
+let iPhone4s        = (modelName: "iPhone 4s", modelNumbers: ["A1431", "A1387"], hardwareStrings: ["iPhone4,1"], osVersions: [5, 6, 7, 8, 9])
 let iPhone5         = (modelName: "iPhone 5", modelNumbers: ["A1428", "A1429", "A1442"], hardwareStrings: ["iPhone5,1", "iPhone5,2"], osVersions: [6, 7, 8, 9])
 let iPhone5c        = (modelName: "iPhone 5c", modelNumbers: ["A1532", "A1456", "A1507", "A1529"], hardwareStrings: ["iPhone5,3", "iPhone5,4"], osVersions: [7, 8, 9])
 let iPhone5s        = (modelName: "iPhone 5s", modelNumbers: ["A1533", "A1453", "A1457", "A1530"], hardwareStrings: ["iPhone6,1", "iPhone6,2"], osVersions: [7, 8, 9])
@@ -33,3 +33,18 @@ let phones = [iPhone, iPhone3G, iPhone3Gs, iPhone4, iPhone4s, iPhone5, iPhone5c,
     * Get Devices with OSVersion
 */
 import Foundation
+
+var typeSafePhone = [Phone]()
+
+do {
+
+    typeSafePhone.append(try createPhone(.iPhone6s, modelNumber: .A1633, hardwareString: .iPhone8_1, osVersion: ._9))
+
+} catch PhoneCreationError.ModelNumberInvalid(let modelNumber, let modelName) {
+    print("invalid model number of \(modelNumber) for \(modelName)")
+} catch PhoneCreationError.HardwareStringInvalid(let hardwareString, let modelName) {
+    print("invalid hardware string of \(hardwareString) for \(modelName)")
+} catch PhoneCreationError.OSVersionInvalid(let osVersion, let modelName) {
+    print("invalid os version of \(osVersion) for \(modelName)")
+}
+
