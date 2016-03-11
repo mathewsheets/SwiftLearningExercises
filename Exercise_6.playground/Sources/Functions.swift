@@ -1,6 +1,8 @@
 import Foundation
 
-func iterator(students: [[String:String]], closure: (student: [String:String]) -> Void) {
+public typealias Student = [String:String]
+
+func iterator(students: [Student], closure: (student: Student) -> Void) {
     
     for var index = 0; index < students.count; ++index {
         
@@ -9,7 +11,7 @@ func iterator(students: [[String:String]], closure: (student: [String:String]) -
 }
 
 // Iterate over each element in the array
-public func each(students: [[String:String]], closure: (student: [String:String], index: Int) -> Void) {
+public func each(students: [Student], closure: (student: Student, index: Int) -> Void) {
     
     var index = 0;
     
@@ -17,7 +19,7 @@ public func each(students: [[String:String]], closure: (student: [String:String]
 }
 
 // Returns true if all of the elements is not false
-public func all(students: [[String:String]], closure: (student: [String:String]) -> Bool) -> Bool {
+public func all(students: [Student], closure: (student: Student) -> Bool) -> Bool {
     
     var all = true
     
@@ -33,7 +35,7 @@ public func all(students: [[String:String]], closure: (student: [String:String])
 }
 
 // Returns true if at least one of the elements is not false
-public func any(students: [[String:String]], closure: (student: [String:String]) -> Bool) -> Bool {
+public func any(students: [Student], closure: (student: Student) -> Bool) -> Bool {
 
     var any = false
     
@@ -49,7 +51,7 @@ public func any(students: [[String:String]], closure: (student: [String:String])
 }
 
 // Returns the index at which element can be found
-public func indexOf(students: [[String:String]], closure: (student: [String:String]) -> Bool) -> Int? {
+public func indexOf(students: [Student], closure: (student: Student) -> Bool) -> Int? {
 
     var index = -1
     var found = false
@@ -70,7 +72,7 @@ public func indexOf(students: [[String:String]], closure: (student: [String:Stri
 }
 
 // Returns true if the element is present
-public func contains(students: [[String:String]], closure: (student: [String:String]) -> Bool) -> Bool {
+public func contains(students: [Student], closure: (student: Student) -> Bool) -> Bool {
     
     var found = false
     
@@ -86,9 +88,9 @@ public func contains(students: [[String:String]], closure: (student: [String:Str
 }
 
 // Returns an array of all the elements that pass a truth test
-public func filter(students: [[String:String]], closure: (student: [String:String]) -> Bool) -> [[String:String]]? {
+public func filter(students: [Student], closure: (student: Student) -> Bool) -> [Student]? {
     
-    var filter = [[String:String]]()
+    var filter = [Student]()
 
     iterator(students) { (student) -> Void in
         
@@ -102,9 +104,9 @@ public func filter(students: [[String:String]], closure: (student: [String:Strin
 }
 
 // Returns the elements in the array without the elements that pass a truth test
-public func reject(students: [[String:String]], closure: (student: [String:String]) -> Bool) -> [[String:String]]? {
+public func reject(students: [Student], closure: (student: Student) -> Bool) -> [Student]? {
 
-    var keep = [[String:String]]()
+    var keep = [Student]()
 
     iterator(students) { (student) -> Void in
 
@@ -118,7 +120,7 @@ public func reject(students: [[String:String]], closure: (student: [String:Strin
 }
 
 // Returns an array of a specific value from all the elements
-public func pluck(students: [[String:String]], closure: (student: [String:String]) -> String) -> [String] {
+public func pluck(students: [Student], closure: (student: Student) -> String) -> [String] {
 
     var plucked = [String]()
 
