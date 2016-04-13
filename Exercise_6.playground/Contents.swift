@@ -1,6 +1,6 @@
 /*:
-**Exercise:** Leveraging the `each` and `iterator` functions above, and using the students constant below, create the following functions passing in a closure to satisfy the function requirement.
-*/
+ * callout(Exercise): Leveraging the `each` and `iterator` functions above, and using the students constant below, create the following functions passing in a closure to satisfy the function requirement.
+ */
 let students = [
     ["first" : "Obi-Wan",   "last" : "Kenobi",      "age" : "55", "class" : "Math"],
     ["first" : "Darth",     "last" : "Vader",		"age" : "76", "class" : "English"],
@@ -21,22 +21,23 @@ let students = [
     ["first" : "Rey",       "last" : "Rey",			"age" : "16", "class" : "English"]
 ]
 /*:
-**Functions:**
-* each = Iterate over each element in the array
-* all = Returns true if all of the elements is not false
-* any = Returns true if at least one of the elements is not false
-* contains = Returns true if the element is present
-* indexOf = Returns the index at which element can be found
-* filter = Returns an array of all the elements that pass a truth test
-* reject = Returns the elements in the array without the elements that pass a truth test
-* pluck = Returns an array of a specific value from all the elements
->> **Constraints:**
-Use the above functions to query your students.
->>
->> **Example Output:**
-* Last names of math and sciense students where age > 25 and age < 80
-* ["Kenobi", "Windu", "Solo", "Bacca"]
-*/
+ **Functions:**
+ - `each` = Iterate over each element in the array
+ - `all` = Returns true if all of the elements is not false
+ - `any` = Returns true if at least one of the elements is not false
+ - `contains` = Returns true if the element is present
+ - `indexOf` = Returns the index at which element can be found
+ - `filter` = Returns an array of all the elements that pass a truth test
+ - `reject` = Returns the elements in the array without the elements that pass a truth test
+ - `pluck` = Returns an array of a specific value from all the elements
+ 
+ **Constraints:**
+ Use the above functions to query your students.
+ 
+ **Example Output:**
+ -  Last names of math and sciense students where age > 25 and age < 80
+ - `["Kenobi", "Windu", "Solo", "Bacca"]`
+ */
 each(students) { print("\($0["first"]!) \($0["last"]!) is index \($1)") }
 print("all = \(all(students) { Int($0["age"]!) < 88 })")
 print("any = \(any(students) { Int($0["age"]!) <= 16 })")

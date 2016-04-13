@@ -1,5 +1,5 @@
 /*:
-**Exercise:** We need to model the set of possible iPhones manufactured. Replace each possible tuple property value with an enumeration that would be appropriate to the current non enumeration value.
+ * callout(Exercise): We need to model the set of possible iPhones manufactured. Replace each possible tuple property value with an enumeration that would be appropriate to the current non enumeration value.
 */
 let iPhone          = (modelName: "iPhone", modelNumbers: ["A1203"], hardwareStrings: ["iPhone1,1"], osVersions: [1, 2, 3])
 let iPhone3G        = (modelName: "iPhone 3G", modelNumbers: ["A1324", "A1241"], hardwareStrings: ["iPhone1,2"], osVersions: [2, 3, 4])
@@ -16,22 +16,22 @@ let iPhone6sPlus    = (modelName: "iPhone 6s Plus", modelNumbers: ["A1634", "A16
 
 let phones = [iPhone, iPhone3G, iPhone3Gs, iPhone4, iPhone4s, iPhone5, iPhone5c, iPhone5s, iPhone6, iPhone6Plus, iPhone6s, iPhone6sPlus]
 /*:
->> **Constraints:**
-* Create the following Enumerations:
-    * ModelName = Enumeration for all the model names
-    * ModelNumber = Enumeration for all the model numbers
-    * HardwareString = Enumeration for all hardware string
-    * OSVersion = Enumeration for all os versions
-* Create the following Functions
-    * Create a device passing in as arguments each enumeration
-        * Validate the parameters using a guard statement
-        * Throw an error that's appropriate to the invalid parameter value
-        * Return a tuple similar to above only using the above enumerations
-    * Get Device with ModelName
-    * Get Device with ModelNumber
-    * Get Device with HardwareString
-    * Get Devices with OSVersion
-*/
+ **Constraints:**
+ - Create the following Enumerations:
+     - ModelName = Enumeration for all the model names
+     - ModelNumber = Enumeration for all the model numbers
+     - HardwareString = Enumeration for all hardware string
+     - OSVersion = Enumeration for all os versions
+ - Create the following Functions
+    - Create a device passing in as arguments each enumeration
+        - Validate the parameters using a guard statement
+        - Throw an error that's appropriate to the invalid parameter value
+        - Return a tuple similar to above only using the above enumerations
+    - Get Device with ModelName
+    - Get Device with ModelNumber
+    - Get Device with HardwareString
+    - Get Devices with OSVersion
+ */
 import Foundation
 
 do {
@@ -73,4 +73,3 @@ print("version 9 phones")
 for phone in _v9s {
     print("\t\(phone.0.rawValue)")
 }
-
