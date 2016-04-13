@@ -20,8 +20,6 @@ public class Owner {
     deinit {
 
         print("\(name) is buried")
-        
-        
     }
     
     public func addDog(dog: Dog) {

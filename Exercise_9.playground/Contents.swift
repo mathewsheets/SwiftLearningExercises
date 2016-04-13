@@ -22,9 +22,10 @@ if let dog = matt?[0, .Dog]?.0 {
 }
 
 if let cat = matt?[0, .Cat]?.1 {
-    
+
     print("\(cat.description)")
 }
+
 print(matt!.description)
 
 matt = nil
