@@ -9,17 +9,6 @@
  */
 import Foundation
 
-enum Loudness {
-    case Soft
-    case Medium
-    case Very
-}
-
-enum When {
-    case AM
-    case PM
-}
-
 class Dog {
     
     static let dogYearsMultiplier = 7
@@ -140,6 +129,17 @@ class Cat {
         
         print("\(name) is chasing a \(what.color) mouse.")
     }
+}
+
+enum Loudness {
+    case Soft
+    case Medium
+    case Very
+}
+
+enum When {
+    case AM
+    case PM
 }
 
 struct Mouse {
