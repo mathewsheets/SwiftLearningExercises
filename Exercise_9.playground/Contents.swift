@@ -8,3 +8,23 @@
  - Create a `convenience` initializer for creating your `Dog` and `Cat` instance
  */
 import Foundation
+
+var matt: Owner? = Owner(name: "Matt")
+
+print(matt!.description)
+
+matt!.addDog(Dog(breed: "Greyhound", color: "fawn", age: 6, name: "Fido", owner: matt!))
+matt!.addCat(Cat(breed: "Siamese", color: "white", age: 8, name: "Snowy"))
+
+if let dog = matt?[0, .Dog]?.0 {
+    
+    print("\(dog.description)")
+}
+
+if let cat = matt?[0, .Cat]?.1 {
+    
+    print("\(cat.description)")
+}
+print(matt!.description)
+
+matt = nil
