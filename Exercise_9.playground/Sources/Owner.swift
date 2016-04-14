@@ -38,8 +38,16 @@ public class Owner {
 
         switch type {
         case .Cat:
+
+            // check that the index is in the correct range
+            guard index >= 0 && index < cats.count else { return nil }
+
             return (dog: nil, cat: cats[index])
         case .Dog:
+
+            // check that the index is in the correct range
+            guard index >= 0 && index < dogs.count else { return nil }
+
             return (dog: dogs[index], cat: nil)
         }
     }

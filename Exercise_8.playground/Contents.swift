@@ -154,7 +154,7 @@ struct Mouse {
 
 let mouse = Mouse(color: "black")
 
-var snowy: Cat?  = Cat(breed: "Siamese", color: "white", age: 8, name: "Snowy")
+var snowy: Cat? = Cat(breed: "Siamese", color: "white", age: 8, name: "Snowy")
 print("\(snowy!.description)")
 snowy!.meowing(Loudness.Very)
 snowy!.eating("dog food")
