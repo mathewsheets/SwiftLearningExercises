@@ -26,6 +26,7 @@ extension Account {
 public class BaseAccount {
 
     public var balance = 0.0
+
     public unowned var customer: Customer
 
     public init(customer: Customer) {

@@ -27,7 +27,7 @@ do {
 //    print(account.description)
     
     try teller?.done()
-
+    
 } catch TransactionError.NoCustomer {
     print("ERROR: teller is not handling a customer")
 } catch TransactionError.InsufficientFunds(let balance, let debiting) {
