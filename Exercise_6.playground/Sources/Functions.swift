@@ -3,19 +3,24 @@ import Foundation
 public typealias Student = [String:String]
 
 func iterator(students: [Student], closure: (student: Student) -> Void) {
-    
-    for var index = 0; index < students.count; ++index {
-        
+
+    for index in 0..<students.count {
+
         closure(student: students[index])
     }
 }
 
 // Iterate over each element in the array
 public func each(students: [Student], closure: (student: Student, index: Int) -> Void) {
-    
+
     var index = 0;
-    
-    iterator(students) { closure(student: $0, index: index++) }
+
+    iterator(students) {
+
+        closure(student: $0, index: index)
+
+        index += 1
+    }
 }
 
 // Returns true if all of the elements is not false
@@ -64,7 +69,7 @@ public func indexOf(students: [Student], closure: (student: Student) -> Bool) ->
                 found = true
             }
 
-            index++
+            index += 1
         }
     }
 
