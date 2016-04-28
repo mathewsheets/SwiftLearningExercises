@@ -52,4 +52,3 @@ let text = "Last names of math and science students where age > 25 and age < 80"
 let selected = pluck(filter(filter(students) { $0["class"] == "Math" }! + filter(students) { $0["class"] == "Science" }!) { Int($0["age"]!)! > 25 && Int($0["age"]!)! < 80 }!) { $0["last"]! }
 
 print("\(text)\n\t\(selected)")
-
