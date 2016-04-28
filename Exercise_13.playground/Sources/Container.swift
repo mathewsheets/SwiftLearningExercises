@@ -1,5 +1,6 @@
 import Foundation
 
+// the contract for the Container
 public protocol Container {
 
     associatedtype ItemType
@@ -13,20 +14,21 @@ public protocol Container {
     subscript(i: Int) -> ItemType { get }
 }
 
-public class Database<Element: Equatable> {
+// the class that can hold any data type but the element must be equatable
+public class Database<Element where Element: Equatable, Element: Hashable> {
 
-    public typealias ItemType = Element
-
-    public var items: [ItemType]
+    public var items: [Element]
     
     public init() {
-        
-        items = [ItemType]()
+
+        items = [Element]()
     }
 }
 
 extension Database: Container {
     
+    public typealias ItemType = Element
+
     public func addItem(item: ItemType) {
         items.append(item)
     }

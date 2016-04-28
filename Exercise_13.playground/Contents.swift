@@ -47,21 +47,6 @@ let stringLengths = finder.pluck(strings.items) { return $0.characters.count }
 print(stringLengths)
 
 print("----Person data type----")
-class Person: Equatable {
-    
-    var first: String
-    var last: String
-    
-    init(first: String, last: String){
-        self.first = first
-        self.last = last
-    }
-}
-
-func ==(lhs: Person, rhs: Person) -> Bool {
-    
-    return lhs.first == rhs.first && lhs.last == rhs.last
-}
 
 var persons = Database<Person>()
 persons.addItem(Person(first: "Bobby", last: "Joe"))
