@@ -87,7 +87,7 @@ persons.deserialize("persons.json") { (item) -> Person in
     return person
 }
 
-finder.each(Array(persons.items)) { print($0.item.description) }
+finder.each(Array(persons.items)) { print("\($0.item.description)\n") }
 
 let personsJSONPayload = persons.serialize { (items) -> AnyObject in
     
