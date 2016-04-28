@@ -1,52 +1,121 @@
 import Foundation
 
-enum NamePrefix: String {
+public enum NamePrefix: String {
     case Mr
     case Ms
     case Mrs
 }
 
-enum NameSuffix: String {
+public enum NameSuffix: String {
     case Jr
     case Sr
 }
 
-class Name {
+public class Name {
     
-    var first: String?
-    var middle: String?
-    var last: String?
-    var prefix: NamePrefix?
-    var suffix: NameSuffix?
+    public var first: String?
+    public var middle: String?
+    public var last: String?
+    public var prefix: NamePrefix?
+    public var suffix: NameSuffix?
+    
+    public init() {
+        
+    }
+    
+    var asDictionary: [String:AnyObject] {
+        
+        var dictionary = [String:AnyObject]()
+        
+        dictionary["first"] = first
+        dictionary["middle"] = middle
+        dictionary["last"] = last
+        dictionary["prefix"] = prefix?.rawValue
+        dictionary["suffix"] = suffix?.rawValue
+        
+        return dictionary
+    }
 }
 
-struct Coordinate {
+public struct Coordinate {
     
-    var latitude: Double?
-    var longitude: Double?
+    public var latitude: Double?
+    public var longitude: Double?
+    
+    public init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+    
+    var asDictionary: [String:AnyObject] {
+        
+        var dictionary = [String:AnyObject]()
+        
+        dictionary["latitude"] = latitude
+        dictionary["longitude"] = longitude
+        
+        return dictionary
+    }
 }
 
-class Address {
+public class Address {
     
-    var coordinate: Coordinate?
-    var street1: String?
-    var street2: String?
-    var city: String?
-    var county: String?
-    var state: String?
-    var country: String?
+    public var coordinate: Coordinate?
+    public var street1: String?
+    public var street2: String?
+    public var city: String?
+    public var county: String?
+    public var state: String?
+    public var country: String?
+    
+    public init() {
+        
+    }
+    
+    var asDictionary: [String:AnyObject] {
+        
+        var dictionary = [String:AnyObject]()
+        
+        dictionary["coordinate"] = coordinate?.asDictionary
+        dictionary["street1"] = street1
+        dictionary["street2"] = street2
+        dictionary["city"] = city
+        dictionary["county"] = county
+        dictionary["state"] = state
+        dictionary["country"] = country
+
+        return dictionary
+    }
 }
 
 public class Person {
 
-    var id: String?
-    var name: Name?
-    var phone: String?
-    var company: String?
-    var title: String?
-    var address: Address?
+    public var id: String?
+    public var name: Name?
+    public var phone: String?
+    public var company: String?
+    public var title: String?
+    public var address: Address?
     
-    var description: String {
+    public init() {
+        
+    }
+    
+    var asDictionary: [String:AnyObject] {
+        
+        var dictionary = [String:AnyObject]()
+        
+        dictionary["id"] = id
+        dictionary["name"] = name?.asDictionary
+        dictionary["phone"] = phone
+        dictionary["company"] = company
+        dictionary["title"] = title
+        dictionary["address"] = address?.asDictionary
+        
+        return dictionary
+    }
+    
+    public var description: String {
         
         var nameString = ""
         if name != nil {
@@ -100,5 +169,20 @@ extension Person: Hashable {
     public var hashValue: Int {
         
         return description.hashValue
+    }
+}
+
+extension Array where Element: Person {
+    
+    public var asDictionary: [[String:AnyObject]] {
+        
+        var dictionaries = [[String:AnyObject]]()
+        
+        for element in self {
+            
+            dictionaries.append(element.asDictionary)
+        }
+        
+        return dictionaries
     }
 }

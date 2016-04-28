@@ -71,7 +71,7 @@ extension Database {
                             addItem(item)
                         }
                     } else {
-                        print("not a array of dictionaries")
+                        print("not a array")
                     }
                 } else {
                     print("could not deserialize")
