@@ -101,6 +101,53 @@ public class Person {
         
     }
     
+    public init(dictionary: [String:AnyObject]) {
+        
+        id = dictionary["id"] as? String
+        
+        if let nameDict = dictionary["name"] as? [String:AnyObject] {
+            
+            name = Name()
+            
+            name!.first = nameDict["first"] as? String
+            name!.middle = nameDict["middle"] as? String
+            name!.last = nameDict["last"] as? String
+            
+            if let prefix = nameDict["prefix"] as? String {
+                
+                name!.prefix = NamePrefix(rawValue: prefix)
+            }
+            if let suffix = nameDict["suffix"] as? String {
+                
+                name!.suffix = NameSuffix(rawValue: suffix)
+            }
+        }
+        
+        phone = dictionary["phone"] as? String
+        company = dictionary["company"] as? String
+        title = dictionary["title"] as? String
+        
+        if let addressDict = dictionary["address"] as? [String:AnyObject]  {
+            
+            address = Address()
+            
+            if let coordinateDict = addressDict["coordinate"] as? [String:Double] {
+                
+                let latitude = coordinateDict["latitude"]
+                let longitude = coordinateDict["longitude"]
+                
+                address!.coordinate = Coordinate(latitude: latitude!, longitude: longitude!)
+            }
+            
+            address!.street1 = addressDict["street1"] as? String
+            address!.street2 = addressDict["street2"] as? String
+            address!.city = addressDict["city"] as? String
+            address!.county = addressDict["county"] as? String
+            address!.state = addressDict["state"] as? String
+            address!.country = addressDict["country"] as? String
+        }
+    }
+    
     var asDictionary: [String:AnyObject] {
         
         var dictionary = [String:AnyObject]()

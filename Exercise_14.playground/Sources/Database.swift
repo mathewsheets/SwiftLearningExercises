@@ -1,6 +1,6 @@
 import Foundation
 
-// the class that can hold any data type but the element must be equatable
+// the class that can hold any data type but the element must be equatable and hashable
 public class Database<Element where Element: Equatable, Element: Hashable> {
     
     public var items: Set<Element>
@@ -37,9 +37,9 @@ extension Database: Container {
 }
 
 extension Database {
-    
+
     public func deserialize<T>(filename: String, closure: (item: AnyObject) -> T) {
-        
+
         var contents: String?
         do {
             contents = try FileUtils.getFileContents(filename)
@@ -50,25 +50,21 @@ extension Database {
         } catch let error as NSError {
             print(error)
         }
-        
+
         if let payload = contents {
             let jsonData = payload.dataUsingEncoding(NSUTF8StringEncoding)!
             do {
                 if let jsonObject: AnyObject = try NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers) {
-                    
+
                     if let arrayOfDictionaries = jsonObject as? [[String:AnyObject]] {
                         for dictionary in arrayOfDictionaries {
-
-                            let item = closure(item: dictionary) as! ItemType
                             
-                            addItem(item)
+                            addItem(closure(item: dictionary) as! ItemType)
                         }
                     } else if let array = jsonObject as? [AnyObject] {
                         for thing in array {
-                            
-                            let item = closure(item: thing) as! ItemType
-                            
-                            addItem(item)
+
+                            addItem(closure(item: thing) as! ItemType)
                         }
                     } else {
                         print("not a array")
@@ -82,11 +78,12 @@ extension Database {
         }
     }
     
-    public func serialize(convert: (items: Set<Element>) -> AnyObject) -> String? {
+    public func serialize(caster: (items: Set<Element>) -> AnyObject) -> String? {
         do {
-            let anyObject = convert(items: items)
+            
+            // the closure parameter needs to cast the Set<Element> to an appropriate AnyObject for NSJSONSerialization, either an Array or Dictionary
 
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(anyObject, options: .PrettyPrinted)
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(caster(items: items), options: .PrettyPrinted)
             
             return String(data: jsonData, encoding: NSUTF8StringEncoding)
             
