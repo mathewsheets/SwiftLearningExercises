@@ -25,9 +25,9 @@ let totalAmount = billAmount + tipAmount
 
 // using the Remainder Operator to get the decimal value as an Int
 
-let billAmountDecimal =    Int(billAmount % 1 * 100)
-let tipAmountDecimal =     Int(tipAmount % 1 * 100)
-let totalAmountDecimal =   Int(totalAmount % 1 * 100)
+let billAmountDecimal =    Int(billAmount.truncatingRemainder(dividingBy: 1.0) * 100)
+let tipAmountDecimal =     Int(tipAmount.truncatingRemainder(dividingBy: 1.0) * 100)
+let totalAmountDecimal =   Int(totalAmount.truncatingRemainder(dividingBy: 1.0) * 100)
 
 // get the decimal as a string using the Ternary Conditional Operator for 0, < 10 or >= 10
 
@@ -47,3 +47,4 @@ print("What is the bill? $\(billAmountStr)")
 print("What is the tip percentage? \(Int(tipPercentage * 100))")
 print("The tip is $\(tipAmountStr)")
 print("The total is $\(totalAmountStr)")
+
