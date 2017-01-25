@@ -12,7 +12,7 @@
 import Foundation
 
 let alphaLower = "abcdefghijklmnopqrstuvwxyz"
-let alphaUpper = alphaLower.uppercaseString
+let alphaUpper = alphaLower.uppercased()
 let alphaLowerCount = alphaLower.characters.count
 let alphaUpperCount = alphaUpper.characters.count
 
@@ -29,32 +29,32 @@ repeat {
         var alpha: String
         var alphaCount: Int
         switch string {
-        case _ where alphaLower.containsString(string):
+        case _ where alphaLower.contains(string):
             alpha = alphaLower
-        case _ where alphaUpper.containsString(string):
+        case _ where alphaUpper.contains(string):
             alpha = alphaUpper
         default:
-            encrypting ? encrypted.appendContentsOf(string) : decrypted.appendContentsOf(string)
+            encrypting ? encrypted.append(string) : decrypted.append(string)
             continue
         }
         alphaCount = alpha.characters.count
 
-        let found = alpha.rangeOfString(string)!
+        let found = alpha.range(of: string)!
         let distance: Int
         var advancedBy: Int
         if encrypting {
-            distance = alphaCount - found.startIndex.distanceTo(alpha.endIndex)
+            distance = alphaCount - <#T##String.CharacterView corresponding to your index##String.CharacterView#>.distance(from: found.lowerBound, to: alpha.endIndex)
             advancedBy = (distance + shiftValue) % alphaCount
         } else {
-            distance = alpha.startIndex.distanceTo(found.startIndex)
+            distance = alpha.characters.distance(from: alpha.startIndex, to: found.lowerBound)
             advancedBy = (distance - shiftValue) % alphaCount
             if advancedBy < 0 {
                 advancedBy = alphaCount - -advancedBy
             }
         }
 
-        let append = alpha.substringWithRange(alpha.startIndex.advancedBy(advancedBy)..<alpha.startIndex.advancedBy(advancedBy + 1))
-        encrypting ? encrypted.appendContentsOf(append) : decrypted.appendContentsOf(append)
+        let append = alpha.substring(with: alpha.characters.index(alpha.startIndex, offsetBy: advancedBy)..<alpha.characters.index(alpha.startIndex, offsetBy: advancedBy + 1))
+        encrypting ? encrypted.append(append) : decrypted.append(append)
     }
 
     encrypting = !encrypting

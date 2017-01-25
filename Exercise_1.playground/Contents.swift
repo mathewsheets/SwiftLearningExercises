@@ -47,4 +47,3 @@ print("What is the bill? $\(billAmountStr)")
 print("What is the tip percentage? \(Int(tipPercentage * 100))")
 print("The tip is $\(tipAmountStr)")
 print("The total is $\(totalAmountStr)")
-
