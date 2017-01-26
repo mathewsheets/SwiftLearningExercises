@@ -43,6 +43,8 @@ repeat {
         let distance: Int
         var advancedBy: Int
         if encrypting {
+            
+            // try to fix
             distance = alphaCount - <#T##String.CharacterView corresponding to your index##String.CharacterView#>.distance(from: found.lowerBound, to: alpha.endIndex)
             advancedBy = (distance + shiftValue) % alphaCount
         } else {
