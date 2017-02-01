@@ -7,6 +7,7 @@
  - `Oliver dropped this class.` (**use the second bullet point string to pull out the last students's name.**)
  - `Other students in my class are Annie, Sam, Jack, Hudson and CARSON was added.`  (**use the second bullet point string and append another student.**)
  - `Jack and Hudson are in the class.` (**use the second bullet point string to pull out third and fourth student.**)
+ - `My Swift class in on  Jan 18 2017, Jan 25 2017 ` (**LIST OUT THE REST OF THE DATES**)
  
  **Constraints:**
  - Use a nested tuple to hold your students
@@ -46,8 +47,152 @@ let fourthStudentToFind = fourthStudent.first
 let fourthStudentRange = otherStudents.range(of: fourthStudentToFind)!
 let fourthStudentStr = otherStudents.substring(with: fourthStudentRange)
 
+var classDates = ""
+
+let dates = (
+    (
+        year: 2017, month: (
+            jan: (date: 18, date: 25),
+            feb: (date: 1, date: 8, date: 15, date: 22),
+            mar: (date: 1, date: 8, date: 15, date: 22, date: 29),
+            apr: (date: 5, date: 12, date: 19, date: 26),
+            may: (date: 3)
+        )
+    )
+)
+
+var dateComponets = DateComponents()
+dateComponets.year = dates.year
+
+// start of jan
+dateComponets.month = 1
+dateComponets.day = dates.month.jan.0
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+classDates += ", "
+dateComponets.day = dates.month.jan.1
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+
+// start of feb
+dateComponets.month = 2
+classDates += ", "
+dateComponets.day = dates.month.feb.0
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+classDates += ", "
+dateComponets.day = dates.month.feb.1
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+classDates += ", "
+dateComponets.day = dates.month.feb.2
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+classDates += ", "
+dateComponets.day = dates.month.feb.3
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+
+// start of march
+dateComponets.month = 3
+classDates += ", "
+dateComponets.day = dates.month.mar.0
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+classDates += ", "
+dateComponets.day = dates.month.mar.1
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+classDates += ", "
+dateComponets.day = dates.month.mar.2
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+classDates += ", "
+dateComponets.day = dates.month.mar.3
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+classDates += ", "
+dateComponets.day = dates.month.mar.4
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+
+// start of apr
+dateComponets.month = 4
+classDates += ", "
+dateComponets.day = dates.month.apr.0
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+classDates += ", "
+dateComponets.day = dates.month.apr.1
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+classDates += ", "
+dateComponets.day = dates.month.apr.2
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+classDates += ", "
+dateComponets.day = dates.month.apr.3
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+
+// start of may
+dateComponets.month = 5
+classDates += ", "
+dateComponets.day = dates.month.may.0
+if let date = Calendar.current.date(from: dateComponets) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    classDates += dateFormatter.string(from: date)
+}
+
 print("My name is \(firstStudent.first) \(firstStudent.last), my email is \(firstStudent.email).")
 print(otherStudents)
 print("\(lastStudentStr) dropped this class.")
 print("\(newOtherStudents)and \(newStudent.first.uppercased()) was added.")
 print("\(thirdStudentStr) and \(fourthStudentStr) are in the class.")
+print("My Swift class in on \(classDates)")
