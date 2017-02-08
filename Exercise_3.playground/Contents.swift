@@ -7,7 +7,7 @@
  
  **Constraints:**
  - The encrypted and decrypted text is case sensitive
- - Add a shift variable to indicate how many places to shift
+ - Add a shift variable to indicate how many places to shift: *the example output has a shift value of 13*
  */
 import Foundation
 
@@ -17,7 +17,7 @@ let alphaLowerCount = alphaLower.characters.count
 let alphaUpperCount = alphaUpper.characters.count
 
 let input = "Nearly all men can stand adversity, but if you want to test a man's character, give him power."
-let shiftValue = 8
+let shiftValue = 13
 var encrypted = ""
 var decrypted = ""
 var encrypting = true
@@ -44,7 +44,7 @@ repeat {
         var advancedBy: Int
         if encrypting {
             distance = alphaCount - alpha.distance(from: found.lowerBound, to: alpha.endIndex)
-            advancedBy = (distance + shiftValue) % alphaCount
+            advancedBy = (distance + (shiftValue == Int.max ? (shiftValue - distance) : shiftValue)) % alphaCount
         } else {
             distance = alpha.characters.distance(from: alpha.startIndex, to: found.lowerBound)
             advancedBy = (distance - shiftValue) % alphaCount
