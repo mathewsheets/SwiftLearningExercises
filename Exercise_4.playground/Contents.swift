@@ -54,7 +54,7 @@ typealias Classes       = [ClassName:Class]
 
 // Processing
 var allStudents = Set<String>()
-for (index, var student) in rows.enumerate() {
+for (index, var student) in rows.enumerated() {
     let name = "\(student["column_1"]!) \(student["column_2"]!)"
     student["name"] = name
     
@@ -121,12 +121,12 @@ for name in classNames {
     }
 }
 
-let mathAndScienceIntersect = math.intersect(science)
+let mathAndScienceIntersect = math.intersection(science)
 print("\(mathAndScienceIntersect.count) Intersecting Math & Science Students")
 for student in mathAndScienceIntersect {
     print("\t\(student)")
 }
-let mathAndScienseExclusiveOr = math.exclusiveOr(science)
+let mathAndScienseExclusiveOr = math.symmetricDifference(science)
 print("\(mathAndScienseExclusiveOr.count) ExclusiveOr of Math & Science Students")
 for student in mathAndScienseExclusiveOr {
     print("\t\(student)")
@@ -136,7 +136,7 @@ print("\(mathAndScienceUnion.count) Union of Math & Science Students")
 for student in mathAndScienceUnion {
     print("\t\(student)")
 }
-let mathAndScienceSubtract = math.subtract(science)
+let mathAndScienceSubtract = math.subtracting(science)
 print("\(mathAndScienceSubtract.count) Subtracting Math & Science Students")
 for student in mathAndScienceSubtract {
     print("\t\(student)")
@@ -145,13 +145,13 @@ for student in mathAndScienceSubtract {
 if allStudents == math.union(science).union(english).union(history) {
     print("Unioning all classes equals all the students")
 }
-if english.isSubsetOf(allStudents) {
+if english.isSubset(of: allStudents) {
     print("English is a subset of all students")
 }
-if !english.isSubsetOf(history) {
+if !english.isSubset(of: history) {
     print("English is not a subset of History")
 }
-if allStudents.isSupersetOf(history) {
+if allStudents.isSuperset(of: history) {
     print("All students is a superset of History")
 }
 
@@ -166,24 +166,24 @@ var mathGirls = Class()
 mathGirls.insert(rows[11]["name"]!)
 mathGirls.insert(rows[8]["name"]!)
 
-if mathGirls.isStrictSubsetOf(math) {
+if mathGirls.isStrictSubset(of: math) {
     print("Math girls is a strict subset of math")
 }
-if !mathGirls.union(mathBoys).isStrictSubsetOf(math) {
+if !mathGirls.union(mathBoys).isStrictSubset(of: math) {
     print("Math girls & boys is not a strict subset of math")
 }
 
-if !allStudents.isStrictSupersetOf(math.union(science).union(english).union(history)) {
+if !allStudents.isStrictSuperset(of: math.union(science).union(english).union(history)) {
     print("All classes is not a strict superset of all students")
 }
 let stemStudents = math.union(science)
-if allStudents.isStrictSupersetOf(stemStudents) {
+if allStudents.isStrictSuperset(of: stemStudents) {
     print("All students is a strict superset of STEM students")
 }
 
-if mathBoys.isDisjointWith(mathGirls) {
+if mathBoys.isDisjoint(with: mathGirls) {
     print("Math boys is disjointed w/ math girls")
 }
-if !mathGirls.isDisjointWith(math) {
+if !mathGirls.isDisjoint(with: math) {
     print("Math girls is not disjointed w/ math")
 }
