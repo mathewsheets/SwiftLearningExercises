@@ -33,11 +33,11 @@ public func getStudents() -> Students {
     ]
 }
 
-public func getEntireClass(inout students: Students) -> Class {
+public func getEntireClass(students: inout Students) -> Class {
     
     var allStudents = Class()
 
-    for (index, var student) in students.enumerate() {
+    for (index, var student) in students.enumerated() {
         let name = "\(student["column_1"]!) \(student["column_2"]!)"
         student["name"] = name
         

@@ -9,28 +9,28 @@
  
  **Constraints:**
  - Use Set Operations
-     - intersect
-     - exclusiveOr
-     - union
-     - subtract
+     - intersection(_:)
+     - symmetricDifference(_:)
+     - union(_:)
+     - subtracting(_:)
  - Use Set Membership and Equality
      - is equal
-     - isSubsetOf
-     - isSupersetOf
-     - isStrictSubsetOf
-     - isStrictSupersetOf
-     - isDisjointWith
+     - isSubset(of:)
+     - isSuperset(of:)
+     - isStrictSubset(of:)
+     - isStrictSuperset(of:)
+     - isDisjoint(with:)
  */
 var students = getStudents()
 
-var allStudents = getEntireClass(&students)
-var math        = getMathStudents(students)
-var mathBoys    = getMathBoyStudents(students)
-var mathGirls   = getMathGirlStudents(students)
-var science     = getScienceStudents(students)
-var english     = getEnglishStudents(students)
-var history     = getHistoryStudents(students)
-var classes     = getSemester([math, science, english, history])
+var allStudents = getEntireClass(students: &students)
+var math        = getMathStudents(students: students)
+var mathBoys    = getMathBoyStudents(students: students)
+var mathGirls   = getMathGirlStudents(students: students)
+var science     = getScienceStudents(students: students)
+var english     = getEnglishStudents(students: students)
+var history     = getHistoryStudents(students: students)
+var classes     = getSemester(classes: [math, science, english, history])
 
 print("All \(students.count) students")
 for student in students {
@@ -49,12 +49,12 @@ for name in classNames {
     }
 }
 
-let mathAndScienceIntersect = math.intersect(science)
+let mathAndScienceIntersect = math.intersection(science)
 print("\(mathAndScienceIntersect.count) Intersecting Math & Science Students")
 for student in mathAndScienceIntersect {
     print("\t\(student)")
 }
-let mathAndScienseExclusiveOr = math.exclusiveOr(science)
+let mathAndScienseExclusiveOr = math.symmetricDifference(science)
 print("\(mathAndScienseExclusiveOr.count) ExclusiveOr of Math & Science Students")
 for student in mathAndScienseExclusiveOr {
     print("\t\(student)")
@@ -64,7 +64,7 @@ print("\(mathAndScienceUnion.count) Union of Math & Science Students")
 for student in mathAndScienceUnion {
     print("\t\(student)")
 }
-let mathAndScienceSubtract = math.subtract(science)
+let mathAndScienceSubtract = math.subtracting(science)
 print("\(mathAndScienceSubtract.count) Subtracting Math & Science Students")
 for student in mathAndScienceSubtract {
     print("\t\(student)")
@@ -73,35 +73,35 @@ for student in mathAndScienceSubtract {
 if allStudents == math.union(science).union(english).union(history) {
     print("Unioning all classes equals all the students")
 }
-if english.isSubsetOf(allStudents) {
+if english.isSubset(of: allStudents) {
     print("English is a subset of all students")
 }
-if !english.isSubsetOf(history) {
+if !english.isSubset(of: history) {
     print("English is not a subset of History")
 }
-if allStudents.isSupersetOf(history) {
+if allStudents.isSuperset(of: history) {
     print("All students is a superset of History")
 }
 
-if mathGirls.isStrictSubsetOf(math) {
+if mathGirls.isStrictSubset(of: math) {
     print("Math girls is a strict subset of math")
 }
-if !mathGirls.union(mathBoys).isStrictSubsetOf(math) {
+if !mathGirls.union(mathBoys).isStrictSubset(of: math) {
     print("Math girls & boys is not a strict subset of math")
 }
 
-if !allStudents.isStrictSupersetOf(math.union(science).union(english).union(history)) {
+if !allStudents.isStrictSuperset(of: math.union(science).union(english).union(history)) {
     print("All classes is not a strict superset of all students")
 }
 let stemStudents = math.union(science)
-if allStudents.isStrictSupersetOf(stemStudents) {
+if allStudents.isStrictSuperset(of: stemStudents) {
     print("All students is a strict superset of STEM students")
 }
 
-if mathBoys.isDisjointWith(mathGirls) {
+if mathBoys.isDisjoint(with: mathGirls) {
     print("Math boys is disjointed w/ math girls")
 }
-if !mathGirls.isDisjointWith(math) {
+if !mathGirls.isDisjoint(with: math) {
     print("Math girls is not disjointed w/ math")
 }
 /*:

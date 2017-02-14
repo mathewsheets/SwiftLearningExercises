@@ -22,28 +22,41 @@ public func getStudents(students: [String]) -> String {
 }
 
 public func findStudent(student: (String, String, String), sentence: String) -> String {
-    
-    let studentToFind = student.0
-    let studentRange = sentence.rangeOfString(studentToFind)!
-    let studentStr = sentence.substringWithRange(studentRange)
 
-    return studentStr
+    let studentToFind = student.0
+    let studentRange = sentence.range(of: studentToFind)!
+
+    return sentence.substring(with: studentRange)
 }
 
 public func findLastStudent(student: (String, String, String), sentence: String) -> String {
 
     let studentToFind = " and \(student.0)"
-    let studentRange = sentence.rangeOfString(studentToFind)!
-    let studentStrTmp = sentence.substringWithRange(studentRange)
-    
-    let studentStr = studentStrTmp.substringFromIndex(studentStrTmp.startIndex.advancedBy(5))
-    
-    return studentStr
+    let studentRange = sentence.range(of: studentToFind)!
+    let studentStrTmp = sentence.substring(with: studentRange)
+
+    return studentStrTmp.substring(from: studentStrTmp.index(studentStrTmp.startIndex, offsetBy: 5))
 }
 
 public func dropLastStudent(dropping: (String, String, String), sentence: String) -> String {
 
     let dropString = " and \(dropping.0)"
 
-    return sentence.substringToIndex(sentence.endIndex.advancedBy(-dropString.characters.count))
+    return sentence.substring(to: sentence.index(sentence.endIndex, offsetBy: -dropString.characters.count))
+}
+
+public func getDate(year: Int, month: Int, day: Int) -> String {
+
+    var dateComponets = DateComponents()
+    dateComponets.year = year
+    dateComponets.month = month
+    dateComponets.day = day
+
+    if let date = Calendar.current.date(from: dateComponets) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        return dateFormatter.string(from: date)
+    }
+    
+    return "INVALID";
 }

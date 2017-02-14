@@ -13,10 +13,10 @@
 import Foundation
 
 let input = "Nearly all men can stand adversity, but if you want to test a man's character, give him power."
-let shiftValue = Int.max
+let shift = 13
 
-let encrypted = encrypt(input, shiftValue: shiftValue)
-let decrypted = decrypt(encrypted, shiftValue: shiftValue)
+let encrypted = encrypt(text: input, shift: shift)
+let decrypted = decrypt(text: encrypted, shift: shift)
 
 print("Decrypted: \(decrypted)")
 print("Encrypted: \(encrypted)")

@@ -17,12 +17,13 @@ let alphaLowerCount = alphaLower.characters.count
 let alphaUpperCount = alphaUpper.characters.count
 
 let input = "Nearly all men can stand adversity, but if you want to test a man's character, give him power."
-let shiftValue = 13
+var shift = 13
 var encrypted = ""
 var decrypted = ""
 var encrypting = true
 repeat {
     let text = encrypting ? input : encrypted
+    shift = shift == Int.max ? shift - alphaLowerCount : shift
     for character in text.characters {
         let string = String(character)
 
@@ -40,17 +41,14 @@ repeat {
         alphaCount = alpha.characters.count
 
         let found = alpha.range(of: string)!
-        let distance: Int
         var advancedBy: Int
         if encrypting {
-            distance = alphaCount - alpha.distance(from: found.lowerBound, to: alpha.endIndex)
-            advancedBy = (distance + (shiftValue == Int.max ? (shiftValue - distance) : shiftValue)) % alphaCount
+            let distance = alphaCount - alpha.distance(from: found.lowerBound, to: alpha.endIndex)
+            advancedBy = (distance + shift) % alphaCount
         } else {
-            distance = alpha.characters.distance(from: alpha.startIndex, to: found.lowerBound)
-            advancedBy = (distance - shiftValue) % alphaCount
-            if advancedBy < 0 {
-                advancedBy = alphaCount - -advancedBy
-            }
+            let distance = alpha.characters.distance(from: alpha.startIndex, to: found.lowerBound)
+            advancedBy = (distance - shift) % alphaCount
+            advancedBy = advancedBy < 0 ? alphaCount - -advancedBy : advancedBy
         }
 
         let append = alpha.substring(with: alpha.characters.index(alpha.startIndex, offsetBy: advancedBy)..<alpha.characters.index(alpha.startIndex, offsetBy: advancedBy + 1))
@@ -62,3 +60,7 @@ repeat {
 
 print("Decrypted: \(decrypted)")
 print("Encrypted: \(encrypted)")
+
+let equal = input == decrypted ? "Yes" : "No"
+
+print("Does input == decrypted: \(equal)")

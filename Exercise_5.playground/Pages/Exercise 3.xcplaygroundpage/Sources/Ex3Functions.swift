@@ -1,50 +1,48 @@
 import Foundation
 
 let alphaLower = "abcdefghijklmnopqrstuvwxyz"
-let alphaUpper = alphaLower.uppercaseString
+let alphaUpper = alphaLower.uppercased()
 let alphaLowerCount = alphaLower.characters.count
 let alphaUpperCount = alphaUpper.characters.count
 
-public func encrypt(text: String, shiftValue: Int) -> String {
+public func encrypt(text: String, shift: Int) -> String {
 
-    return build(text, shiftValue: shiftValue, encrypt: true)
+    return build(text: text, shift: shift, encrypt: true)
 }
 
-public func decrypt(text: String, shiftValue: Int) -> String {
+public func decrypt(text: String, shift: Int) -> String {
     
-    return build(text, shiftValue: shiftValue, encrypt: false)
+    return build(text: text, shift: shift, encrypt: false)
 }
 
-func build(text: String, shiftValue: Int, encrypt: Bool) -> String {
-
-    let shift = shiftValue == Int.max ? shiftValue - alphaLowerCount : shiftValue
+func build(text: String, shift: Int, encrypt: Bool) -> String {
 
     var string = ""
+    let shifting = shift == Int.max ? shift - alphaLowerCount : shift
 
     for character in text.characters {
-        let letter = String(character)
 
-        let alphaAndCount = lowerOrUpper(String(character))
+        let alphaAndCount = lowerOrUpper(character: String(character))
         if alphaAndCount == nil {
-            string.appendContentsOf(letter)
+            string.append(character)
             continue
         }
         let alpha = alphaAndCount!.0
         let alphaCount = alphaAndCount!.1
-        let found = alpha.rangeOfString(letter)!
+        let found = alpha.range(of: String(character))!
 
         var advancedBy = 0
         if encrypt {
-            let distance = alphaCount - found.startIndex.distanceTo(alpha.endIndex)
-            advancedBy = (distance + shift) % alphaCount
+            let distance = alphaCount - alpha.distance(from: found.lowerBound, to: alpha.endIndex)
+            advancedBy = (distance + shifting) % alphaCount
         } else {
-            let distance = alpha.startIndex.distanceTo(found.startIndex)
-            advancedBy = (distance - shift) % alphaCount
+            let distance = alpha.characters.distance(from: alpha.startIndex, to: found.lowerBound)
+            advancedBy = (distance - shifting) % alphaCount
             advancedBy = advancedBy < 0 ? alphaCount - -advancedBy : advancedBy
         }
 
-        let append = alpha.substringWithRange(alpha.startIndex.advancedBy(advancedBy)..<alpha.startIndex.advancedBy(advancedBy + 1))
-        string.appendContentsOf(append)
+        let append = alpha.substring(with: alpha.characters.index(alpha.startIndex, offsetBy: advancedBy)..<alpha.characters.index(alpha.startIndex, offsetBy: advancedBy + 1))
+        string.append(append)
     }
 
     return string
@@ -54,9 +52,9 @@ func lowerOrUpper(character: String) -> (String, Int)? {
 
     var alpha = ""
     switch character {
-    case _ where alphaLower.containsString(character):
+    case _ where alphaLower.contains(character):
         alpha = alphaLower
-    case _ where alphaUpper.containsString(character):
+    case _ where alphaUpper.contains(character):
         alpha = alphaUpper
     default:
         return nil

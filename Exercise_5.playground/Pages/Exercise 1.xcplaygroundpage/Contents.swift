@@ -19,14 +19,14 @@ let billAmount = 87.56
 let tipPercentage = 0.2
 let minTipAmount = 3.0
 
-var tipAmount = getTipAmount(billAmount, tipPercentage: tipPercentage, minTipAmount: minTipAmount)
-let totalAmount = getTotalAmount(billAmount, tipAmount: tipAmount)
+var tipAmount = getTipAmount(billAmount: billAmount, tipPercentage: tipPercentage, minTipAmount: minTipAmount)
+let totalAmount = getTotalAmount(billAmount: billAmount, tipAmount: tipAmount)
 
 // use string interpolation to get the correct representation of the dollar about
 
-let billAmountStr = getFinalString(billAmount, decimal: decimalPlaceString(decimalPlaceAsInt(billAmount)))
-let tipAmountStr = getFinalString(tipAmount, decimal: decimalPlaceString(decimalPlaceAsInt(tipAmount)))
-let totalAmountStr = getFinalString(totalAmount, decimal: decimalPlaceString(decimalPlaceAsInt(totalAmount)))
+let billAmountStr = getFinalString(amount: billAmount, decimal: decimalPlaceString(amount: decimalPlaceAsInt(amount: billAmount)))
+let tipAmountStr = getFinalString(amount: tipAmount, decimal: decimalPlaceString(amount: decimalPlaceAsInt(amount: tipAmount)))
+let totalAmountStr = getFinalString(amount: totalAmount, decimal: decimalPlaceString(amount: decimalPlaceAsInt(amount: totalAmount)))
 
 // print the values
 

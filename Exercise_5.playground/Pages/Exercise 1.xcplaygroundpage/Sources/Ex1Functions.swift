@@ -19,7 +19,7 @@ public func doubleAsInt(amount: Double) -> Int {
 
 public func decimalPlaceAsInt(amount: Double) -> Int {
     
-    return doubleAsInt(amount % 1 * 100)
+    return doubleAsInt(amount: amount.truncatingRemainder(dividingBy: 1.0) * 100)
 }
 
 public func decimalPlaceString(amount: Int) -> String {
@@ -29,5 +29,5 @@ public func decimalPlaceString(amount: Int) -> String {
 
 public func getFinalString(amount: Double, decimal: String) -> String {
     
-    return "\(doubleAsInt(amount)).\(decimal)"
+    return "\(doubleAsInt(amount: amount)).\(decimal)"
 }
