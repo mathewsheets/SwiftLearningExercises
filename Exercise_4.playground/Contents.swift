@@ -8,17 +8,17 @@
  
  **Constraints:**
  - Use Set Operations
- - intersection(_:)
- - symmetricDifference(_:)
- - union(_:)
- - subtracting(_:)
+     - intersection(_:)
+     - symmetricDifference(_:)
+     - union(_:)
+     - subtracting(_:)
  - Use Set Membership and Equality
- - is equal
- - isSubset(of:)
- - isSuperset(of:)
- - isStrictSubset(of:)
- - isStrictSuperset(of:)
- - isDisjoint(with:)
+     - is equal
+     - isSubset(of:)
+     - isSuperset(of:)
+     - isStrictSubset(of:)
+     - isStrictSuperset(of:)
+     - isDisjoint(with:)
  */
 // Data
 var rows = [
