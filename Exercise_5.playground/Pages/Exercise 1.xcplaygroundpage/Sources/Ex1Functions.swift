@@ -14,7 +14,7 @@ public func getTotalAmount(billAmount: Double, tipAmount: Double) -> Double {
 
 public func doubleAsInt(amount: Double) -> Int {
     
-    return Int(amount)
+    return toInt(double: amount)
 }
 
 public func decimalPlaceAsInt(amount: Double) -> Int {
