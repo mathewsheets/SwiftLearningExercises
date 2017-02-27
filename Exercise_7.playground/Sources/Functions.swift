@@ -2,13 +2,13 @@ import Foundation
 
 public func createPhone(modelName: ModelName, modelNumber: ModelNumber, hardwareString: HardwareString, osVersion: OSVersion) throws -> Phone {
     
-    guard validModelNumber(modelNumber, forModelName: modelName) else {
+    guard validModelNumber(modelNumber: modelNumber, forModelName: modelName) else {
         throw PhoneCreationError.ModelNumberInvalid(modelNumber, with: modelName)
     }
-    guard validHardwareString(hardwareString, forModelName: modelName) else {
+    guard validHardwareString(hardwareString: hardwareString, forModelName: modelName) else {
         throw PhoneCreationError.HardwareStringInvalid(hardwareString, with: modelName)
     }
-    guard validOSVersion(osVersion, forModelName: modelName) else {
+    guard validOSVersion(osVersion: osVersion, forModelName: modelName) else {
         throw PhoneCreationError.OSVersionInvalid(osVersion, with: modelName)
     }
     
@@ -111,21 +111,22 @@ func validOSVersion(osVersion: OSVersion, forModelName: ModelName) -> Bool {
     }
 }
 
-func iterator(phones: [Phone], closure: (phone: Phone) -> Void) {
+func iterator(phones: [Phone], closure: (_ student: Phone) -> Void) {
     
-    for var index = 0; index < phones.count; ++index {
+    for index in 0..<phones.count {
         
-        closure(phone: phones[index])
+        closure(phones[index])
     }
 }
 
-public func filter(phones: [Phone], closure: (phone: Phone) -> Bool) -> [Phone]? {
+
+public func filter(phones: [Phone], closure: (_ phone: Phone) -> Bool) -> [Phone]? {
     
     var filter = [Phone]()
     
-    iterator(phones) { (phone) -> Void in
+    iterator(phones: phones) { (phone) -> Void in
         
-        if closure(phone: phone) {
+        if closure(phone) {
             
             filter.append(phone)
         }

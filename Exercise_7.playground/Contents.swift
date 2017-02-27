@@ -47,28 +47,28 @@ do {
 }
 
 // Get Device with ModelName
-let _5cs = filter(safePhones) { $0.0 == .iPhone5c } ?? []
+let _5cs = filter(phones: safePhones) { $0.0 == .iPhone5c } ?? []
 if !_5cs.isEmpty {
     let _5c = _5cs.first!
     print("\(_5c.0.rawValue) by model name = \(_5c.0.rawValue)")
 }
 
 //Get Device with ModelNumber
-let _6ss = filter(safePhones) { $0.1 == .A1633 } ?? []
+let _6ss = filter(phones: safePhones) { $0.1 == .A1633 } ?? []
 if !_6ss.isEmpty {
     let _6s = _6ss.first!
     print("\(_6s.0.rawValue) by model number \(_6s.1.rawValue)")
 }
 
 //Get Device with HardwareString
-let _5ss = filter(safePhones) { $0.2 == .iPhone6_1 } ?? []
+let _5ss = filter(phones: safePhones) { $0.2 == .iPhone6_1 } ?? []
 if !_5ss.isEmpty {
     let _5s = _5ss.first!
     print("\(_5s.0.rawValue) by hardware string = \(_5s.2.rawValue)")
 }
 
 //Get Devices with OSVersion
-let _v9s = filter(safePhones) { $0.3 == ._9 } ?? []
+let _v9s = filter(phones: safePhones) { $0.3 == ._9 } ?? []
 print("version 9 phones")
 for phone in _v9s {
     print("\t\(phone.0.rawValue)")

@@ -156,11 +156,11 @@ let mouse = Mouse(color: "black")
 
 var snowy: Cat? = Cat(breed: "Siamese", color: "white", age: 8, name: "Snowy")
 print("\(snowy!.description)")
-snowy!.meowing(Loudness.Very)
-snowy!.eating("dog food")
-snowy!.sleeping(When.PM)
-snowy!.playing("with yarn")
-snowy!.chase(mouse)
+snowy!.meowing(loudness: Loudness.Very)
+snowy!.eating(what: "dog food")
+snowy!.sleeping(when: When.PM)
+snowy!.playing(what: "with yarn")
+snowy!.chase(what: mouse)
 
 print("")
 
@@ -169,11 +169,11 @@ print("\(fido!.description)")
 
 print("\(fido!.name) is \(fido!.dogYears) in dog years.")
 
-fido!.barking(Loudness.Soft)
-fido!.eating("dog food")
-fido!.sleeping(When.AM)
-fido!.playing("with a ball")
-fido!.chase(snowy!)
+fido!.barking(loudness: Loudness.Soft)
+fido!.eating(what: "dog food")
+fido!.sleeping(when: When.AM)
+fido!.playing(what: "with a ball")
+fido!.chase(what: snowy!)
 fido!.age = 10
 fido!.age = 13
 

@@ -38,17 +38,17 @@ let students = [
  -  Last names of math and sciense students where age > 25 and age < 80
  - `["Kenobi", "Windu", "Solo", "Bacca"]`
  */
-each(students) { print("\($0["first"]!) \($0["last"]!) is index \($1)") }
-print("all = \(all(students) { Int($0["age"]!) < 88 })")
-print("any = \(any(students) { Int($0["age"]!) <= 16 })")
-print("indexOf = \(students[indexOf(students) { $0["last"] == "Sidious" }!]["first"]!)")
-print("contains = \(contains(students) { $0["first"] == "Chew" })")
-print("filter: \n\t\(filter(students) { $0["class"]! == "English" }!)")
-print("reject: \n\t\(reject(students) { Int($0["age"]!) >= 21 }!)")
-print("pluck: \n\t\(pluck(students) { $0["age"]! }.sort())")
-print("pluck: \n\t\(pluck(students) { $0["last"]! })")
+each(students: students) { print("\($0["first"]!) \($0["last"]!) is index \($1)") }
+print("all = \(all(students: students) { Int($0["age"]!)! < 88 })")
+print("any = \(any(students: students) { Int($0["age"]!)! <= 16 })")
+print("indexOf = \(students[indexOf(students: students) { $0["last"] == "Sidious" }!]["first"]!)")
+print("contains = \(contains(students: students) { $0["first"] == "Chew" })")
+print("filter: \n\t\(filter(students: students) { $0["class"]! == "English" }!)")
+print("reject: \n\t\(reject(students: students) { Int($0["age"]!)! >= 21 }!)")
+print("pluck: \n\t\(pluck(students: students) { $0["age"]! }.sorted())")
+print("pluck: \n\t\(pluck(students: students) { $0["last"]! })")
 
 let text = "Last names of math and science students where age > 25 and age < 80"
-let selected = pluck(filter(filter(students) { $0["class"] == "Math" }! + filter(students) { $0["class"] == "Science" }!) { Int($0["age"]!)! > 25 && Int($0["age"]!)! < 80 }!) { $0["last"]! }
+let selected = pluck(students: filter(students: filter(students: students) { $0["class"] == "Math" }! + filter(students: students) { $0["class"] == "Science" }!) { Int($0["age"]!)! > 25 && Int($0["age"]!)! < 80 }!) { $0["last"]! }
 
 print("\(text)\n\t\(selected)")
