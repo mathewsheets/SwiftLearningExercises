@@ -13,8 +13,8 @@ var matt: Owner? = Owner(name: "Matt")
 
 print(matt!.description)
 
-matt?.addPet(Dog(breed: "Greyhound", color: "fawn", age: 6, name: "Fido", owner: matt!))
-matt?.addPet(Cat(breed: "Siamese", color: "white", age: 8, name: "Snowy", owner: matt!))
+matt?.addPet(pet: Dog(breed: "Greyhound", color: "fawn", age: 6, name: "Fido", owner: matt!))
+matt?.addPet(pet: Cat(breed: "Siamese", color: "white", age: 8, name: "Snowy", owner: matt!))
 
 for pet in matt!.pets {
 

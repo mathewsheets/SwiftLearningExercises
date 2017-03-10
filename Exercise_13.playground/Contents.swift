@@ -21,37 +21,37 @@ var finder = DataFinder()
 
 print("----Int data type----")
 var ints = Database<Int>()
-ints.addItem(1)
-ints.addItem(2)
-ints.addItem(3)
-ints.addItem(4)
-ints.addItem(5)
-ints.addItem(6)
-print("removed: \(ints.removeItem(6)!)")
+ints.add(item: 1)
+ints.add(item: 2)
+ints.add(item: 3)
+ints.add(item: 4)
+ints.add(item: 5)
+ints.add(item: 6)
+print("removed: \(ints.remove(item: 6)!)")
 print("ints has \(ints.count) elements")
 
-finder.each(ints.items) { print($0.item) }
+finder.each(items: ints.items) { print($0) }
 
 print("----String data type----")
 var strings = Database<String>()
-strings.addItem("One")
-strings.addItem("Two")
-strings.addItem("Three")
-strings.addItem("Four")
-strings.addItem("Five")
-strings.addItem("Six")
-print("removed: \(strings.removeItem("Six")!)")
+strings.add(item: "One")
+strings.add(item: "Two")
+strings.add(item: "Three")
+strings.add(item: "Four")
+strings.add(item: "Five")
+strings.add(item: "Six")
+print("removed: \(strings.remove(item: "Six")!)")
 print("strings has \(strings.count) elements")
 
-let stringLengths = finder.pluck(strings.items) { return $0.characters.count }
+let stringLengths = finder.pluck(items: strings.items) { return $0.characters.count }
 print(stringLengths)
 
 print("----Person data type----")
 
 var persons = Database<Person>()
-persons.addItem(Person(first: "Bobby", last: "Joe"))
-persons.addItem(Person(first: "Samantha", last: "Sue"))
-persons.addItem(Person(first: "Forest", last: "Gump"))
+persons.add(item: Person(first: "Bobby", last: "Joe"))
+persons.add(item: Person(first: "Samantha", last: "Sue"))
+persons.add(item: Person(first: "Forest", last: "Gump"))
 
-let lastNameLessThen4 = finder.all(persons.items) { $0.last.characters.count < 4}
+let lastNameLessThen4 = finder.all(items: persons.items) { $0.last.characters.count < 4}
 print(lastNameLessThen4)

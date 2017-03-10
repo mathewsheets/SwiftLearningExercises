@@ -11,16 +11,16 @@ import Foundation
 var teller: Teller? = Teller(name: "Annie")
 teller?.auditDelegate = AuditDefaultDelegate()
 
-teller?.handle(Customer(name: "Matt"))
+teller?.handle(customer: Customer(name: "Matt"))
 do {
     try teller?.openCheckingAccount()
     
     let account = teller!.customer!.checking!
     
-    try teller?.credit(100.00, account: account)
+    try teller?.credit(amount: 100.00, account: account)
     print(account.description)
     
-    try teller?.debit(99.00, account: account)
+    try teller?.debit(amount: 99.00, account: account)
     print(account.description)
     
 //    try teller?.debit(2.00, account: account)
@@ -34,16 +34,16 @@ do {
     print("ERROR: transaction error: debiting \(debiting), balance = \(balance)")
 }
 
-teller?.handle(Customer(name: "Sam"))
+teller?.handle(customer: Customer(name: "Sam"))
 do {
     try teller?.openSavingsAccount()
     
     let account = teller!.customer!.savings!
     
-    try teller?.debit(100.00, account: account)
+    try teller?.debit(amount: 100.00, account: account)
     print(account.description)
     
-    try teller?.credit(600.00, account: account)
+    try teller?.credit(amount: 600.00, account: account)
     print(account.description)
     
     if let savings = account as? SavingsAccount {

@@ -5,9 +5,9 @@ public protocol Container {
 
     associatedtype ItemType
 
-    func addItem(item: ItemType)
+    func add(item: ItemType)
 
-    func removeItem(item: ItemType) -> ItemType?
+    func remove(item: ItemType) -> ItemType?
 
     var count: Int { get }
 
@@ -15,7 +15,7 @@ public protocol Container {
 }
 
 // the class that can hold any data type but the element must be equatable
-public class Database<Element where Element: Equatable, Element: Hashable> {
+public class Database<Element> where Element: Equatable, Element: Hashable {
 
     public var items: [Element]
     
@@ -29,23 +29,29 @@ extension Database: Container {
     
     public typealias ItemType = Element
 
-    public func addItem(item: ItemType) {
+    public func add(item: ItemType) {
+        
         items.append(item)
     }
     
-    public func removeItem(item: ItemType) -> ItemType? {
-        let index = items.indexOf { $0 == item }
+    public func remove(item: ItemType) -> ItemType? {
+        
+        let index = items.index { $0 == item }
+        
         if index != nil {
-            return items.removeAtIndex(index!)
+            
+            return items.remove(at: index!)
         }
         return nil
     }
     
     public var count: Int {
+        
         return items.count
     }
     
     public subscript(i: Int) -> ItemType {
+        
         return items[i]
     }
 }
@@ -56,33 +62,33 @@ public class DataFinder {
         
     }
     
-    func iterator<T>(items: [T], closure: (item: T) -> Void) {
+    func iterator<T>(items: [T], closure: (_ item: T) -> Void) {
 
         for index in 0..<items.count {
 
-            closure(item: items[index])
+            closure(items[index])
         }
     }
 
-    public func each<T>(items: [T], closure: (item: T, index: Int) -> Void) {
+    public func each<T>(items: [T], closure: (_ item: T, _ index: Int) -> Void) {
 
         var index = 0;
         
-        iterator(items) { (item) in
+        iterator(items: items) { (item) in
             
-            closure(item: item, index: index)
+            closure(item, index)
             
             index += 1
         }
     }
 
-    public func all<T>(items: [T], closure: (item: T) -> Bool) -> Bool {
+    public func all<T>(items: [T], closure: (_ item: T) -> Bool) -> Bool {
     
         var all = true
         
-        iterator(items) { (item) -> Void in
+        iterator(items: items) { (item) -> Void in
         
-            if all && !closure(item: item) {
+            if all && !closure(item) {
                 
                 all = false
             }
@@ -91,13 +97,13 @@ public class DataFinder {
         return all
     }
     
-    public func any<T>(items: [T], closure: (item: T) -> Bool) -> Bool {
+    public func any<T>(items: [T], closure: (_ item: T) -> Bool) -> Bool {
         
         var any = false
         
-        iterator(items) { (item) -> Void in
+        iterator(items: items) { (item) -> Void in
             
-            if !any && closure(item: item) {
+            if !any && closure(item) {
                 
                 any = true
             }
@@ -106,16 +112,16 @@ public class DataFinder {
         return any
     }
     
-    public func indexOf<T>(items: [T], closure: (item: T) -> Bool) -> Int? {
+    public func indexOf<T>(items: [T], closure: (_ item: T) -> Bool) -> Int? {
         
         var index = -1
         var found = false
         
-        iterator(items) { (item) -> Void in
+        iterator(items: items) { (item) -> Void in
             
             if !found {
                 
-                if closure(item: item)  {
+                if closure(item)  {
                     found = true
                 }
                 
@@ -126,13 +132,13 @@ public class DataFinder {
         return index == -1 || !found ? nil : index
     }
     
-    public func contains<T>(items: [T], closure: (item: T) -> Bool) -> Bool {
+    public func contains<T>(items: [T], closure: (_ item: T) -> Bool) -> Bool {
         
         var found = false
         
-        iterator(items) { (item) -> Void in
+        iterator(items: items) { (item) -> Void in
             
-            if !found && closure(item: item) {
+            if !found && closure(item) {
                 
                 found = true
             }
@@ -141,13 +147,13 @@ public class DataFinder {
         return found
     }
     
-    public func filter<T>(items: [T], closure: (item: T) -> Bool) -> [T]? {
+    public func filter<T>(items: [T], closure: (_ item: T) -> Bool) -> [T]? {
         
         var filter = [T]()
         
-        iterator(items) { (item) -> Void in
+        iterator(items: items) { (item) -> Void in
             
-            if closure(item: item) {
+            if closure(item) {
                 
                 filter.append(item)
             }
@@ -156,13 +162,13 @@ public class DataFinder {
         return !filter.isEmpty ? filter : nil
     }
     
-    public func reject<T>(items: [T], closure: (item: T) -> Bool) -> [T]? {
+    public func reject<T>(items: [T], closure: (_ item: T) -> Bool) -> [T]? {
         
         var keep = [T]()
         
-        iterator(items) { (item) -> Void in
+        iterator(items: items) { (item) -> Void in
             
-            if !closure(item: item) {
+            if !closure(item) {
                 
                 keep.append(item)
             }
@@ -171,11 +177,11 @@ public class DataFinder {
         return !keep.isEmpty ? keep : nil
     }
     
-    public func pluck<T>(items: [T], closure: (item: T) -> AnyObject) -> [AnyObject] {
+    public func pluck<T>(items: [T], closure: (_ item: T) -> Any) -> [Any] {
         
-        var plucked = [AnyObject]()
+        var plucked = [Any]()
         
-        iterator(items) { plucked.append(closure(item: $0)) }
+        iterator(items: items) { plucked.append(closure($0)) }
         
         return plucked
     }

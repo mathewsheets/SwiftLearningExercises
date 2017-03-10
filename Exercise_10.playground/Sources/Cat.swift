@@ -28,6 +28,6 @@ public class Cat: Pet {
     
     override public func makeSound() {
         
-        meowing(Loudness.Soft)
+        meowing(loudness: Loudness.Soft)
     }
 }

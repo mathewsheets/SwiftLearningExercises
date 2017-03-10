@@ -50,14 +50,14 @@ public class Dog {
 
         self.init(breed: "Mutt", color: color, age: age, name: "Unknown", owner: cityPound)
         
-        cityPound.addDog(self)
+        cityPound.addDog(dog: self)
     }
     
     public convenience init(color: String, age: Int, owner: Owner) {
 
         self.init(breed: "Mutt", color: color, age: age, name: "Unknown", owner: owner)
 
-        owner.addDog(self)
+        owner.addDog(dog: self)
     }
 
     deinit {

@@ -17,9 +17,9 @@ extension Account {
     
     public var description: String {
 
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .CurrencyStyle
-        return formatter.stringFromNumber(balance)!
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return formatter.string(from: NSNumber(value: balance))!
     }
 }
 
@@ -79,9 +79,9 @@ public class SavingsAccount: BaseAccount, Account {
     
     public var description: String {
         
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .CurrencyStyle
-        return "\(formatter.stringFromNumber(balance)!) in Savings with interest = \(interest) annually"
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return "\(formatter.string(from: NSNumber(value: balance))!) in Savings with interest = \(interest) annually"
     }
     
     deinit {

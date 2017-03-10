@@ -42,6 +42,6 @@ public class Dog: Pet {
     
     override public func makeSound() {
         
-        barking(Loudness.Very)
+        barking(loudness: Loudness.Very)
     }
 }

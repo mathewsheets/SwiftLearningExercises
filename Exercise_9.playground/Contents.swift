@@ -13,8 +13,8 @@ var matt: Owner? = Owner(name: "Matt")
 
 print(matt!.description)
 
-matt!.addDog(Dog(breed: "Greyhound", color: "fawn", age: 6, name: "Fido", owner: matt!))
-matt!.addCat(Cat(breed: "Siamese", color: "white", age: 8, name: "Snowy"))
+matt!.addDog(dog: Dog(breed: "Greyhound", color: "fawn", age: 6, name: "Fido", owner: matt!))
+matt!.addCat(cat: Cat(breed: "Siamese", color: "white", age: 8, name: "Snowy"))
 
 if let dog = matt?[0, .Dog]?.0 {
     

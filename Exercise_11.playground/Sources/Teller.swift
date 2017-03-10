@@ -29,7 +29,7 @@ public class Teller {
     
         safeCustomer.checking = CheckingAccount(customer: safeCustomer)
         
-        try! openAccount(safeCustomer.checking!)
+        try! openAccount(account: safeCustomer.checking!)
     }
     
     public func openSavingsAccount() throws  {
@@ -39,7 +39,7 @@ public class Teller {
     
         safeCustomer.savings = SavingsAccount(customer: safeCustomer)
         
-        try! openAccount(safeCustomer.savings!)
+        try! openAccount(account: safeCustomer.savings!)
     }
     
     func openAccount(account: Account) throws {
@@ -47,9 +47,9 @@ public class Teller {
             throw TransactionError.NoCustomer
         }
 
-        auditDelegate?.willPerform(Action.Open, customer: safeCustomer, account: account)
-        auditDelegate?.performing(Action.Open, customer: safeCustomer, account: account)
-        auditDelegate?.didPerform(Action.Open, customer: safeCustomer, account: account)
+        auditDelegate?.willPerform(what: Action.Open, customer: safeCustomer, account: account)
+        auditDelegate?.performing(what: Action.Open, customer: safeCustomer, account: account)
+        auditDelegate?.didPerform(what: Action.Open, customer: safeCustomer, account: account)
     }
     
     public func credit(amount: Double, account: Account) throws {
@@ -57,12 +57,12 @@ public class Teller {
             throw TransactionError.NoCustomer
         }
         
-        auditDelegate?.willPerform(Action.Credit, customer: safeCustomer, account: account)
+        auditDelegate?.willPerform(what: Action.Credit, customer: safeCustomer, account: account)
         
-        auditDelegate?.performing(Action.Credit, customer: safeCustomer, account: account)
-        account.credit(amount)
+        auditDelegate?.performing(what: Action.Credit, customer: safeCustomer, account: account)
+        account.credit(amount: amount)
 
-        auditDelegate?.didPerform(Action.Credit, customer: safeCustomer, account: account)
+        auditDelegate?.didPerform(what: Action.Credit, customer: safeCustomer, account: account)
     }
 
     public func debit(amount: Double, account: Account) throws {
@@ -70,12 +70,12 @@ public class Teller {
             throw TransactionError.NoCustomer
         }
         
-        auditDelegate?.willPerform(Action.Debit, customer: safeCustomer, account: account)
+        auditDelegate?.willPerform(what: Action.Debit, customer: safeCustomer, account: account)
         
-        auditDelegate?.performing(Action.Debit, customer: safeCustomer, account: account)
-        try account.debit(amount)
+        auditDelegate?.performing(what: Action.Debit, customer: safeCustomer, account: account)
+        try account.debit(amount: amount)
         
-        auditDelegate?.didPerform(Action.Debit, customer: safeCustomer, account: account)
+        auditDelegate?.didPerform(what: Action.Debit, customer: safeCustomer, account: account)
     }
     
     public func done() throws {
@@ -83,11 +83,11 @@ public class Teller {
             throw TransactionError.NoCustomer
         }
 
-        auditDelegate?.willPerform(Action.Done, customer: safeCustomer, account: nil)
+        auditDelegate?.willPerform(what: Action.Done, customer: safeCustomer, account: nil)
         
-        auditDelegate?.performing(Action.Done, customer: safeCustomer, account: nil)
+        auditDelegate?.performing(what: Action.Done, customer: safeCustomer, account: nil)
         customer = nil
         
-        auditDelegate?.didPerform(Action.Done, customer: safeCustomer, account: nil)
+        auditDelegate?.didPerform(what: Action.Done, customer: safeCustomer, account: nil)
     }
 }

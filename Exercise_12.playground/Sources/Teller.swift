@@ -27,12 +27,12 @@ public class Teller {
             throw TransactionError.NoCustomer
         }
 
-        auditDelegate?.willPerform(AuditDelegateAction.Done, customer: safeCustomer, account: nil)
+        auditDelegate?.willPerform(what: AuditDelegateAction.Done, customer: safeCustomer, account: nil)
         
-        auditDelegate?.performing(AuditDelegateAction.Done, customer: safeCustomer, account: nil)
+        auditDelegate?.performing(what: AuditDelegateAction.Done, customer: safeCustomer, account: nil)
         customer = nil
         
-        auditDelegate?.didPerform(AuditDelegateAction.Done, customer: safeCustomer, account: nil)
+        auditDelegate?.didPerform(what: AuditDelegateAction.Done, customer: safeCustomer, account: nil)
     }
 }
 
@@ -43,9 +43,9 @@ extension Teller {
             throw TransactionError.NoCustomer
         }
         
-        auditDelegate?.willPerform(AuditDelegateAction.Open, customer: safeCustomer, account: account)
-        auditDelegate?.performing(AuditDelegateAction.Open, customer: safeCustomer, account: account)
-        auditDelegate?.didPerform(AuditDelegateAction.Open, customer: safeCustomer, account: account)
+        auditDelegate?.willPerform(what: AuditDelegateAction.Open, customer: safeCustomer, account: account)
+        auditDelegate?.performing(what: AuditDelegateAction.Open, customer: safeCustomer, account: account)
+        auditDelegate?.didPerform(what: AuditDelegateAction.Open, customer: safeCustomer, account: account)
     }
 }
 
@@ -60,7 +60,7 @@ extension Teller {
         
         safeCustomer.checking = CheckingAccount(customer: safeCustomer)
         
-        try! openAccount(safeCustomer.checking!)
+        try! openAccount(account: safeCustomer.checking!)
     }
     
     public func openSavingsAccount() throws  {
@@ -70,7 +70,7 @@ extension Teller {
         
         safeCustomer.savings = SavingsAccount(customer: safeCustomer)
         
-        try! openAccount(safeCustomer.savings!)
+        try! openAccount(account: safeCustomer.savings!)
     }
 
     public func credit(amount: Double, account: Account) throws {
@@ -78,12 +78,12 @@ extension Teller {
             throw TransactionError.NoCustomer
         }
         
-        auditDelegate?.willPerform(AuditDelegateAction.Credit, customer: safeCustomer, account: account)
+        auditDelegate?.willPerform(what: AuditDelegateAction.Credit, customer: safeCustomer, account: account)
         
-        auditDelegate?.performing(AuditDelegateAction.Credit, customer: safeCustomer, account: account)
-        account.credit(amount)
+        auditDelegate?.performing(what: AuditDelegateAction.Credit, customer: safeCustomer, account: account)
+        account.credit(amount: amount)
         
-        auditDelegate?.didPerform(AuditDelegateAction.Credit, customer: safeCustomer, account: account)
+        auditDelegate?.didPerform(what: AuditDelegateAction.Credit, customer: safeCustomer, account: account)
     }
     
     public func debit(amount: Double, account: Account) throws {
@@ -91,11 +91,11 @@ extension Teller {
             throw TransactionError.NoCustomer
         }
         
-        auditDelegate?.willPerform(AuditDelegateAction.Debit, customer: safeCustomer, account: account)
+        auditDelegate?.willPerform(what: AuditDelegateAction.Debit, customer: safeCustomer, account: account)
         
-        auditDelegate?.performing(AuditDelegateAction.Debit, customer: safeCustomer, account: account)
-        try account.debit(amount)
+        auditDelegate?.performing(what: AuditDelegateAction.Debit, customer: safeCustomer, account: account)
+        try account.debit(amount: amount)
         
-        auditDelegate?.didPerform(AuditDelegateAction.Debit, customer: safeCustomer, account: account)
+        auditDelegate?.didPerform(what: AuditDelegateAction.Debit, customer: safeCustomer, account: account)
     }
 }
