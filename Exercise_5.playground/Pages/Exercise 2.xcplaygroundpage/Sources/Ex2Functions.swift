@@ -7,7 +7,7 @@ public func getStudentNames(mirror: Mirror) -> [String] {
     for case let (_?, student) in mirror.children {
         let studentMirror = Mirror(reflecting: student)
         for case let (label?, value) in studentMirror.children {
-            if label == ".0" { // this is the title
+            if label == "first" { // this is the title
                 names.append("\(value)")
             }
         }
