@@ -11,7 +11,7 @@ import Foundation
 
 class Dog {
     
-    static let dogYearsMultiplier = 7
+    static let humanYearsMultiplier = 7
     
     var breed: String
     var color: String
@@ -36,9 +36,9 @@ class Dog {
         return "\(name) is a \(age) year old \(color) \(breed)."
     }
 
-    var dogYears: Int {
+    var humanYears: Int {
         
-        return age * Dog.dogYearsMultiplier
+        return age * Dog.humanYearsMultiplier
     }
     
     init(breed: String, color: String, age: Int, name: String) {
@@ -167,7 +167,7 @@ print("")
 var fido: Dog? = Dog(breed: "Greyhound", color: "fawn", age: 6, name: "Fido")
 print("\(fido!.description)")
 
-print("\(fido!.name) is \(fido!.dogYears) in dog years.")
+print("\(fido!.name) is \(fido!.humanYears) in dog years.")
 
 fido!.barking(loudness: Loudness.Soft)
 fido!.eating(what: "dog food")
