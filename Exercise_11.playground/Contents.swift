@@ -24,7 +24,7 @@ do {
     try teller?.debit(amount: 99.00, account: account)
     print(account.description)
     
-//    try teller?.debit(2.00, account: account)
+//    try teller?.debit(amount: 2.00, account: account)
 //    print(account.description)
     
     try teller?.done()

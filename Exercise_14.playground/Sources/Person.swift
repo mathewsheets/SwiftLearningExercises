@@ -27,11 +27,11 @@ public class Name {
         
         var dictionary = [String:AnyObject]()
         
-        dictionary["first"] = first
-        dictionary["middle"] = middle
-        dictionary["last"] = last
-        dictionary["prefix"] = prefix?.rawValue
-        dictionary["suffix"] = suffix?.rawValue
+        dictionary["first"] = first as AnyObject
+        dictionary["middle"] = middle as AnyObject
+        dictionary["last"] = last as AnyObject
+        dictionary["prefix"] = prefix?.rawValue as AnyObject
+        dictionary["suffix"] = suffix?.rawValue as AnyObject
         
         return dictionary
     }
@@ -51,8 +51,8 @@ public struct Coordinate {
         
         var dictionary = [String:AnyObject]()
         
-        dictionary["latitude"] = latitude
-        dictionary["longitude"] = longitude
+        dictionary["latitude"] = latitude as AnyObject
+        dictionary["longitude"] = longitude as AnyObject
         
         return dictionary
     }
@@ -76,13 +76,13 @@ public class Address {
         
         var dictionary = [String:AnyObject]()
         
-        dictionary["coordinate"] = coordinate?.asDictionary
-        dictionary["street1"] = street1
-        dictionary["street2"] = street2
-        dictionary["city"] = city
-        dictionary["county"] = county
-        dictionary["state"] = state
-        dictionary["country"] = country
+        dictionary["coordinate"] = coordinate?.asDictionary as AnyObject
+        dictionary["street1"] = street1 as AnyObject
+        dictionary["street2"] = street2 as AnyObject
+        dictionary["city"] = city as AnyObject
+        dictionary["county"] = county as AnyObject
+        dictionary["state"] = state as AnyObject
+        dictionary["country"] = country as AnyObject
 
         return dictionary
     }
@@ -152,12 +152,12 @@ public class Person {
         
         var dictionary = [String:AnyObject]()
         
-        dictionary["id"] = id
-        dictionary["name"] = name?.asDictionary
-        dictionary["phone"] = phone
-        dictionary["company"] = company
-        dictionary["title"] = title
-        dictionary["address"] = address?.asDictionary
+        dictionary["id"] = id as AnyObject
+        dictionary["name"] = name?.asDictionary as AnyObject
+        dictionary["phone"] = phone as AnyObject
+        dictionary["company"] = company as AnyObject
+        dictionary["title"] = title as AnyObject
+        dictionary["address"] = address?.asDictionary as AnyObject
         
         return dictionary
     }
@@ -199,8 +199,8 @@ public class Person {
                 addressString += ")"
             }
         }
-        
-        return "\tid: \(id ?? "")\n\tname: \(nameString)\n\tphone: \(phone ?? "")\n\tcompany: \(company ?? "")\n\ttitle: \(title ?? "")\n\taddress: \(addressString ?? "")"
+
+        return "\tid: \(id ?? "")\n\tname: \(nameString)\n\tphone: \(phone ?? "")\n\tcompany: \(company ?? "")\n\ttitle: \(title ?? "")\n\taddress: \(addressString)"
     }
 }
 
