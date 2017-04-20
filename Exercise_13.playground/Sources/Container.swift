@@ -62,7 +62,7 @@ public class DataFinder {
         
     }
     
-    func iterator<T>(items: [T], closure: (_ item: T) -> Void) {
+    func iterator<T>(items: [T], closure: (T) -> Void) {
 
         for index in 0..<items.count {
 
@@ -70,7 +70,7 @@ public class DataFinder {
         }
     }
 
-    public func each<T>(items: [T], closure: (_ item: T, _ index: Int) -> Void) {
+    public func each<T>(items: [T], closure: (T, Int) -> Void) {
 
         var index = 0;
         
@@ -82,7 +82,7 @@ public class DataFinder {
         }
     }
 
-    public func all<T>(items: [T], closure: (_ item: T) -> Bool) -> Bool {
+    public func all<T>(items: [T], closure: (T) -> Bool) -> Bool {
     
         var all = true
         
@@ -97,7 +97,7 @@ public class DataFinder {
         return all
     }
     
-    public func any<T>(items: [T], closure: (_ item: T) -> Bool) -> Bool {
+    public func any<T>(items: [T], closure: (T) -> Bool) -> Bool {
         
         var any = false
         
@@ -112,7 +112,7 @@ public class DataFinder {
         return any
     }
     
-    public func indexOf<T>(items: [T], closure: (_ item: T) -> Bool) -> Int? {
+    public func indexOf<T>(items: [T], closure: (T) -> Bool) -> Int? {
         
         var index = -1
         var found = false
@@ -132,7 +132,7 @@ public class DataFinder {
         return index == -1 || !found ? nil : index
     }
     
-    public func contains<T>(items: [T], closure: (_ item: T) -> Bool) -> Bool {
+    public func contains<T>(items: [T], closure: (T) -> Bool) -> Bool {
         
         var found = false
         
@@ -147,7 +147,7 @@ public class DataFinder {
         return found
     }
     
-    public func filter<T>(items: [T], closure: (_ item: T) -> Bool) -> [T]? {
+    public func filter<T>(items: [T], closure: (T) -> Bool) -> [T]? {
         
         var filter = [T]()
         
@@ -162,7 +162,7 @@ public class DataFinder {
         return !filter.isEmpty ? filter : nil
     }
     
-    public func reject<T>(items: [T], closure: (_ item: T) -> Bool) -> [T]? {
+    public func reject<T>(items: [T], closure: (T) -> Bool) -> [T]? {
         
         var keep = [T]()
         
@@ -177,7 +177,7 @@ public class DataFinder {
         return !keep.isEmpty ? keep : nil
     }
     
-    public func pluck<T>(items: [T], closure: (_ item: T) -> Any) -> [Any] {
+    public func pluck<T>(items: [T], closure: (T) -> Any) -> [Any] {
         
         var plucked = [Any]()
         

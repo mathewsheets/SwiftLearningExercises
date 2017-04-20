@@ -40,9 +40,9 @@ extension AuditDelegate {
     public func performing(what: AuditAction, customer: Customer, account: Account?) {
         
         if (account != nil) {
-            print("proforming \(what.description) for customer \(customer.name): balance = \(account!.description).")
+            print("performing \(what.description) for customer \(customer.name): balance = \(account!.description).")
         } else {
-            print("proforming \(what.description) for customer \(customer.name).")
+            print("performing \(what.description) for customer \(customer.name).")
         }
     }
     

@@ -26,10 +26,10 @@ public class TransactionAuditPrinterDelegate: TransactionAuditDelegate {
         
         if (account != nil) {
             
-            print("proforming \(what) on \(account!.description) account for customer \(customer.name).")
+            print("performing \(what) on \(account!.description) account for customer \(customer.name).")
         } else {
             
-            print("proforming \(what) for customer \(customer.name).")
+            print("performing \(what) for customer \(customer.name).")
         }
     }
     

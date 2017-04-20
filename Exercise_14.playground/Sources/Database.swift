@@ -45,7 +45,7 @@ extension Database: Container {
 
 extension Database {
 
-    public func deserialize<T>(filename: String, closure: (_ item: AnyObject) -> T) {
+    public func deserialize<T>(filename: String, closure: (AnyObject) -> T) {
 
         var contents: String?
         do {
@@ -84,7 +84,7 @@ extension Database {
         }
     }
     
-    public func serialize(caster: (_ items: Set<Element>) -> Any) -> String? {
+    public func serialize(caster: (Set<Element>) -> Any) -> String? {
         do {
             // the closure parameter needs to cast the Set<Element> to an appropriate AnyObject for NSJSONSerialization, either an Array or Dictionary
 
