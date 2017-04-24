@@ -11,12 +11,14 @@ public class Person {
     }
 }
 
-public func ==(lhs: Person, rhs: Person) -> Bool {
+extension Person: Equatable {
 
-    return lhs.first == rhs.first && lhs.last == rhs.last
+    public static func ==(lhs: Person, rhs: Person) -> Bool {
+        
+        return lhs.first == rhs.first && lhs.last == rhs.last
+    }
+
 }
-
-extension Person: Equatable {}
 
 extension Person: Hashable {
     
