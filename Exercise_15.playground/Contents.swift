@@ -4,10 +4,13 @@
  **Constraints:**
  - Protocol with methods to create, retrieve, update and delete person instances
  - Class conforming to the protocol reading files for the JSON payloads
- - Class conforming to the protocol using NSURLRequest, NSURLResponse and NSURLSession
+ - Class conforming to the protocol using URLRequest, URLResponse and URLSession
  - Each method body must use the appropriate example when implementing the HTTP Client class
  - Each method body must use what you learned in [JSON & Instances](JSON%20and%20Instances) to serialize/deserialize a person instances
  */
 import Foundation
-import XCPlayground
+
+// NEEDED TO HANDLE RESPONSES
+import PlaygroundSupport
+PlaygroundSupport.PlaygroundPage.current.needsIndefiniteExecution = true
 
