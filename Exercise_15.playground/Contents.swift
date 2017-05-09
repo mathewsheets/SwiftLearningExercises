@@ -13,4 +13,32 @@ import Foundation
 // NEEDED TO HANDLE RESPONSES
 import PlaygroundSupport
 PlaygroundSupport.PlaygroundPage.current.needsIndefiniteExecution = true
+URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
 
+//PersonApi.personService = PersonMockService()
+PersonApi.personService = PersonHttpService(url: URL(string: "http://cscc-persons.getsandbox.com")!)
+
+print("get all persons")
+try! PersonApi.getPersons { (completion: HandlerPersons) in
+    do {
+        let persons = try completion()
+        
+        print(persons.asDictionary)
+    } catch PersonApiError.ResponseError(let errors) {
+        print("Error info: \(errors)")
+    } catch  {
+        print("Error info: \(error)")
+    }
+}
+
+print("create a person")
+// todo
+
+print("get a single person")
+// todo
+
+print("update a person")
+// todo
+
+print("delete a person")
+// todo
