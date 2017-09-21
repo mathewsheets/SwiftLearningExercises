@@ -19,7 +19,7 @@ let tipPercentage = 0.2
 let minTipAmount = 3.0
 
 let initialTipAmount = billAmount * tipPercentage
-var tipAmount = (initialTipAmount < minTipAmount) ? minTipAmount : initialTipAmount
+var tipAmount = initialTipAmount < minTipAmount ? minTipAmount : initialTipAmount
 
 let totalAmount = billAmount + tipAmount
 
