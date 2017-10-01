@@ -16,7 +16,7 @@ ints.deserialize(filename: "ints.json") { (item) -> Int in
     return item as! Int
 }
 
-finder.each(items: [ints.items]) { print($0.0) }
+finder.each(items: [ints.items]) { item, index in print(item) }
 
 let intsJSONPayload = ints.serialize { return Array($0) }
 print(intsJSONPayload!)
@@ -29,7 +29,7 @@ strings.deserialize(filename: "strings.json") { (item) -> String in
     return item as! String
 }
 
-finder.each(items: [strings.items]) { print($0.0) }
+finder.each(items: [strings.items]) { item, index in print(item) }
 
 let stringsJSONPayload = strings.serialize { return Array($0) }
 print(stringsJSONPayload!)
@@ -42,7 +42,7 @@ persons.deserialize(filename: "persons.json") { (item) -> Person in
     return Person(dictionary: item as! [String : AnyObject])
 }
 
-finder.each(items:  Array(persons.items)) { print("\($0.0.description)\n") }
+finder.each(items:  Array(persons.items)) { item, index in print("\(item.description)\n") }
 
 let personsJSONPayload = persons.serialize { Array($0).asDictionary }
 print(personsJSONPayload!)

@@ -30,7 +30,7 @@ ints.add(item: 6)
 print("removed: \(ints.remove(item: 6)!)")
 print("ints has \(ints.count) elements")
 
-finder.each(items: ints.items) { print($0) }
+finder.each(items: ints.items) { item, index in print(item) }
 
 print("----String data type----")
 var strings = Database<String>()

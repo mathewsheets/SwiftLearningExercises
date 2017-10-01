@@ -1,7 +1,7 @@
 import Foundation
 
 // the class that can hold any data type but the element must be equatable and hashable
-public class Database<Element> where Element: Equatable, Element: Hashable {
+public class Database<Element> where Element: Hashable {
     
     public var items: Set<Element>
     
