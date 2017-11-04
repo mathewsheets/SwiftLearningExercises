@@ -16,12 +16,12 @@ print(matt!.description)
 matt!.addDog(dog: Dog(breed: "Greyhound", color: "fawn", age: 6, name: "Fido", owner: matt!))
 matt!.addCat(cat: Cat(breed: "Siamese", color: "white", age: 8, name: "Snowy"))
 
-if let dog = matt?[0, .Dog]?.0 {
-    
+if let dog = matt?[0, .Dog]?.dog {
+
     print("\(dog.description)")
 }
 
-if let cat = matt?[0, .Cat]?.1 {
+if let cat = matt?[0, .Cat]?.cat {
 
     print("\(cat.description)")
 }

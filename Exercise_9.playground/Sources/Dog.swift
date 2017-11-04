@@ -33,7 +33,7 @@ public class Dog {
         return age * Dog.dogYearsMultiplier
     }
     
-    internal unowned var owner: Owner
+    public unowned var owner: Owner
     
     public init(breed: String, color: String, age: Int, name: String, owner: Owner) {
         
@@ -43,16 +43,7 @@ public class Dog {
         self.name = name
         self.owner = owner
     }
-    
-    public convenience init(color: String, age: Int) {
 
-        let cityPound = Owner(name: "City Pound")
-
-        self.init(breed: "Mutt", color: color, age: age, name: "Unknown", owner: cityPound)
-        
-        cityPound.addDog(dog: self)
-    }
-    
     public convenience init(color: String, age: Int, owner: Owner) {
 
         self.init(breed: "Mutt", color: color, age: age, name: "Unknown", owner: owner)

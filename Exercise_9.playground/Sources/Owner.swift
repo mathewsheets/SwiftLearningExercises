@@ -34,7 +34,7 @@ public class Owner {
         cats.append(cat)
     }
 
-    public subscript(index: Int, type: PetType) -> (Dog?, Cat?)? {
+    public subscript(index: Int, type: PetType) -> (dog: Dog?, cat: Cat?)? {
 
         switch type {
         case .Cat:
