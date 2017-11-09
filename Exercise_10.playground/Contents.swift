@@ -21,6 +21,11 @@ for pet in matt!.pets {
     print("\(pet.description)")
 
     pet.makeSound()
+    
+    if let dog = pet as? Dog {
+        dog.barking(loudness: .Soft)
+    }
+    
 }
 
 print(matt!.description)
